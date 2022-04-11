@@ -14,4 +14,9 @@ class Book extends Model
     protected $fillable = [
         'title', 'author', 'donor'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Model\User');
+    }
 }

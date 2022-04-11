@@ -28,13 +28,16 @@ class BookController extends Controller
         Book::query()->create($data);
         */
 
-        $event = new Book;
+        $book = new Book;
 
-        $event->title = $request->title;
-        $event->author = $request->author;
-        $event->donor = $request->donor;
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->donor = $request->donor;
 
-        $event->save();
+        $user = auth()->user();
+        $book->user_id = $user->id;
+
+        $book->save();
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
     }
