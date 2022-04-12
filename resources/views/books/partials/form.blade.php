@@ -13,7 +13,7 @@
     <div class="mb-3">
         <label for="labelForDonor" class="form-label">Quem o trouxe:</label>
         <input type="text" class="form-control form-control-sm" name="donor" id="donor" 
-            placeholder="Quem o trouxe?" required>
+            placeholder="Quem o trouxe?" value="{{ $user->name }}" required>
     </div>
     <button type="submit" class="btn btn-outline-primary" value="Add Book">Cadastrar Livro</button>
 </form>

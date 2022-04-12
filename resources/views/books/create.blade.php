@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Cadastre o novo livro:</h2>
+<h3>Cadastre o novo livro:</h3>
     @include('books.partials.form')
 @endsection

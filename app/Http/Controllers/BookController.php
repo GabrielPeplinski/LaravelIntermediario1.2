@@ -17,7 +17,9 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('books.create');
+        $user = auth()->user();
+
+        return view('books.create', ['user' => $user]);
     }
 
     public function store(Request $request)

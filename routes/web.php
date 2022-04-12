@@ -34,6 +34,10 @@ Route::put('/books/update/{id}', [BookController::class, 'update']);
 
 Route::post('/books/borrow/{id}', [BorrowController::class, 'borrow']);
 
+Route::get('/books/borrows/list', [BorrowController::class, 'list']);
+
+Route::delete('/books/borrows/delete/{id}', [BorrowController::class, 'destroy']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

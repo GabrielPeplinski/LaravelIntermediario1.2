@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<h3>Editando o livro : {{ $book->title }}</h3>
 
 <form action="/books/update/{{ $book->id }}" method="POST">
     @csrf
