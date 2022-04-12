@@ -14,16 +14,16 @@ class BorrowController extends Controller
         $borrow = new Borrow;
         $book = Book::findOrFail($id);
         $user = auth()->user();
+        $borrow = Borrow::create([
+            'book_id' => $book->id,
+            'user_id' => $user->id,
+            'return_date' => date('Y-m-d ', strtotime('+1 week'))
+        ]);
 
-        $borrow->book_id = $book->id;
-        $borrow->user_id = $user->id;
-
-        $borrow->return_date = date('Y-m-d ', strtotime('+1 week'));
-        
-        $book->borrow_id = $borrow->id;
-
+        $book->available = false;
+       
         $book->save();
-        $borrow->save();
+        
         return redirect('/')->with('msg', 'Livro Emprestado com Sucesso!');
     }
 }

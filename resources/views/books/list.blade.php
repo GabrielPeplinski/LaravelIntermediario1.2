@@ -14,6 +14,13 @@
             <br>
             <h6 class="card-subtitle mb-2 text-dark">Autor : {{ $book->author }}</h6>
             <h6 class="card-subtitle mb-2 text-dark">Doado por : {{ $book->donor }}</h6>
+
+            @if ($book->available === 0)
+            <h6 class="card-subtitle mb-2 text-dark">Status do Livro : <strong>Emprestado!</strong></h6>
+            @else
+            <h6 class="card-subtitle mb-2 text-dark">Status do Livro : <strong>Disponível!</strong></h6>
+            @endif
+
             <form action="/books/show/{{ $book->id }}" method="GET">
                 <button type="submit" class="card-link bg-secondary">Ver mais</button>
             </form>

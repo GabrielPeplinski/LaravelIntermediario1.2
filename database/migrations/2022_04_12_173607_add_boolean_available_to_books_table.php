@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBorrowIdToBooksTable extends Migration
+class AddBooleanAvailableToBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddBorrowIdToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->foreignId('borrow_id')->constrained();
+            $table->boolean('available');
         });
     }
 
@@ -26,9 +26,7 @@ class AddBorrowIdToBooksTable extends Migration
     public function down()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->foreignId('borrow_id')
-            ->constrained()
-            ->onDelete('cascade');
+            $table->dropColumn('available');
         });
     }
 }

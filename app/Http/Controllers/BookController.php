@@ -34,6 +34,7 @@ class BookController extends Controller
         $book->title = $request->title;
         $book->author = $request->author;
         $book->donor = $request->donor;
+        $book->available = true;
 
         $user = auth()->user();
         $book->user_id = $user->id;

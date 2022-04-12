@@ -12,7 +12,7 @@ class Book extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'title', 'author', 'donor'
+        'title', 'author', 'donor', 'available'
     ];
 
     public function user()
