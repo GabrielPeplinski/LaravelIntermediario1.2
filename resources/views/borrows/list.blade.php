@@ -22,7 +22,7 @@
             @method('POST')
             <button type="submit" class="card-link bg-success">Prolongar Empréstimo</button>
         </form>
-        <form action="/books/borrows/delete/{{ $books[$i]->id }}" method="POST">
+        <form action="/books/borrows/delete/{{ $myBorrows[$i]->id }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="card-link bg-danger">Devolver</button>

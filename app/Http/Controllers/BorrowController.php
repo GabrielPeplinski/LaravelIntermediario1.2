@@ -29,24 +29,35 @@ class BorrowController extends Controller
 
     public function list()
     {
-        $borrows = Borrow::all();
-        $books = Book::all();
+        /*$borrows = Borrow::all();*/
+        $borrows = auth()->user()->borrowed;
+    
+        /*$books = Book::all();*/
         $user = auth()->user();
-        $myBorrows = [];
+        $books = [];
 
-        foreach($borrows as $borrow) {
-            if ($borrow->user_id === $user->id)
-                array_push($myBorrows, $borrow);
+        foreach($borrows as $borrow) {  
+            array_push($books, $borrow->book);
         }
 
-        return view('borrows.list',['myBorrows' => $myBorrows, 
+        return view('borrows.list',['myBorrows' => $borrows, 
                 'books' => $books])->with('Livros Encontrados!');
     }
 
     public function destroy($id)
     {
-        // Arrumar para que o livro volte a ficar disponível
-        $borrow = Borrow::findOrFail($id)->delete();
+        $borrow = Borrow::findOrFail($id);
+        $books = Book::all();
+
+        // melhorar isso passando dois argumentos na rota!
+
+        foreach($books as $book){
+            if($book->id === $borrow->book_id)
+                $book->available = true;
+                $book->save();
+        }
+
+        $borrow->delete();
         return redirect('/')->with('msg', 'Livro Devolvido com Sucesso!');
     }
 }
