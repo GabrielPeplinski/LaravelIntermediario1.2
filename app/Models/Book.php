@@ -17,6 +17,11 @@ class Book extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Model\User');
+        return $this->belongsTo(User::class);
+    }
+
+    public function borrow()
+    {
+        return $this->hasOne(Borrow::class);
     }
 }
