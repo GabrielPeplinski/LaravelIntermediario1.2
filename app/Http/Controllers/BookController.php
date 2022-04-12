@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Book;
+use App\Models\Borrow;
 use App\Http\Requests\BookRequest;
 
 class BookController extends Controller
@@ -45,6 +46,7 @@ class BookController extends Controller
     public function list()
     {
         $books = Book::all();
+        $borrows = Borrow::all();
         return view('books.list', ['books' => $books]);
     }
 

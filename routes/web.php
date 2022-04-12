@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::delete('/books/delete/{id}', [BookController::class, 'destroy']);
 Route::get('/books/edit/{id}', [BookController::class, 'edit']);
 
 Route::put('/books/update/{id}', [BookController::class, 'update']);
+
+Route::post('/books/borrow/{id}', [BorrowController::class, 'borrow']);
 
 Route::middleware([
     'auth:sanctum',

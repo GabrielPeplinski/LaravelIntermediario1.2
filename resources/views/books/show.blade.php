@@ -21,9 +21,9 @@
             @method('DELETE')
             <button type="submit" class="card-link bg-danger">Deletar</button>
         </form>
-        <form action="/books/delete/{{ $book->id }}" method="POST">
+        <form action="/books/borrow/{{ $book->id }}" method="POST">
             @csrf
-            @method('DELETE')
+            @method('POST')
             <button type="submit" class="card-link bg-success">Emprestar Livro</button>
         </form>
     </div>
