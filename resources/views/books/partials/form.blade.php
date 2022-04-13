@@ -15,5 +15,5 @@
         <input type="text" class="form-control form-control-sm" name="donor" id="donor" 
             placeholder="Quem o trouxe?" value="{{ $user->name }}" required>
     </div>
-    <button type="submit" class="btn btn-outline-primary" value="Add Book">Cadastrar Livro</button>
+    <button type="submit" class="btn btn-primary text-dark" value="Add Book">Cadastrar Livro</button>
 </form>

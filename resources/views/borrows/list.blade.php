@@ -24,12 +24,12 @@
         <form action="/books/borrows/update/{{ $myBorrows[$i]->id }}" method="POST">
             @csrf
             @method('GET')
-            <button type="submit" class="card-link bg-success">Prolongar Empréstimo</button>
+            <button type="submit" class="btn btn-success text-dark">Prolongar Empréstimo</button>
         </form>
         <form action="/books/borrows/delete/{{ $myBorrows[$i]->id }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="card-link bg-danger">Devolver</button>
+            <button type="submit" class="btn btn-danger text-dark">Devolver</button>
         </form>
     </div>
     @endif

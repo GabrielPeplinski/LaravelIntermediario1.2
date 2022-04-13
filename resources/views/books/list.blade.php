@@ -23,7 +23,7 @@
             @endif
 
             <form action="/books/show/{{ $book->id }}" method="GET">
-                <button type="submit" class="card-link bg-secondary">Ver mais</button>
+                <button type="submit" class="btn btn-secondary text-dark">Ver mais</button>
             </form>
         </div>
     </div>

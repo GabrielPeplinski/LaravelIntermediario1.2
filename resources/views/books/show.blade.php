@@ -21,19 +21,19 @@
         <form action="/books/edit/{{ $book->id }}" method="POST">
             @csrf
             @method('GET')
-            <button type="submit" class="card-link bg-secondary">Editar</button>
+            <button type="submit" class="btn btn-secondary text-dark">Editar</button>
         </form>
         <form action="/books/delete/{{ $book->id }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="card-link bg-danger">Deletar</button>
+            <button type="submit" class="btn btn-danger text-dark">Deletar</button>
         </form>
 
         @if ($book -> available === 1)
         <form action="/books/borrow/{{ $book->id }}" method="POST">
             @csrf
             @method('POST')
-            <button type="submit" class="card-link bg-success">Emprestar Livro</button>
+            <button type="submit" class="btn btn-success text-dark">Emprestar</button>
         </form>
         @endif
     </div>
