@@ -9,7 +9,7 @@ use App\Models\Borrow;
 
 class BorrowController extends Controller
 {
-    public function borrow($id)
+    public function create($id)
     {   
         $borrow = new Borrow;
         $book = Book::findOrFail($id);
@@ -49,8 +49,6 @@ class BorrowController extends Controller
         $borrow = Borrow::findOrFail($id);
         $books = Book::all();
 
-        // melhorar isso passando dois argumentos na rota!
-
         foreach($books as $book){
             if($book->id === $borrow->book_id)
                 $book->available = true;
@@ -59,5 +57,16 @@ class BorrowController extends Controller
 
         $borrow->delete();
         return redirect('/')->with('msg', 'Livro Devolvido com Sucesso!');
+    }
+
+    public function update($id)
+    {
+        $borrow = Borrow::findOrFail($id);
+
+        $old_date = $borrow -> return_date;
+        $borrow->return_date = date('Y-m-d ', strtotime('+1week',strtotime($old_date)));
+        $borrow->save();
+
+        return redirect('/')->with('msg', 'Empréstimo Prolongado com Sucesso!');
     }
 }

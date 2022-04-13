@@ -15,11 +15,15 @@
         <h5 class="card-title text-dark">Título : {{ $books[$i]->title }}</h5>
         <br>
         <h6 class="card-subtitle mb-2 text-dark">Autor : {{ $books[$i]->author }}</h6>
-        <h6 class="card-subtitle mb-2 text-dark">Data de Empréstimo : {{ $myBorrows[$i]->created_at }}</h6>
-        <h6 class="card-subtitle mb-2 text-dark">Data da Devolução : {{ $myBorrows[$i]->return_date }}</h6>
-        <form action="/" method="POST">
+        <h6 class="card-subtitle mb-2 text-dark">Data de Empréstimo : {{date( 'd/m/Y' , 
+            strtotime($myBorrows[$i]->created_at))}}
+        </h6>
+        <h6 class="card-subtitle mb-2 text-dark">Data de Empréstimo : {{date( 'd/m/Y' , 
+            strtotime($myBorrows[$i]->return_date))}}
+        </h6>
+        <form action="/books/borrows/update/{{ $myBorrows[$i]->id }}" method="POST">
             @csrf
-            @method('POST')
+            @method('GET')
             <button type="submit" class="card-link bg-success">Prolongar Empréstimo</button>
         </form>
         <form action="/books/borrows/delete/{{ $myBorrows[$i]->id }}" method="POST">

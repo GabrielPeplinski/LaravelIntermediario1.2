@@ -32,11 +32,13 @@ Route::get('/books/edit/{id}', [BookController::class, 'edit']);
 
 Route::put('/books/update/{id}', [BookController::class, 'update']);
 
-Route::post('/books/borrow/{id}', [BorrowController::class, 'borrow']);
+Route::post('/books/borrow/{id}', [BorrowController::class, 'create']);
 
 Route::get('/books/borrows/list', [BorrowController::class, 'list']);
 
 Route::delete('/books/borrows/delete/{id}', [BorrowController::class, 'destroy']);
+
+Route::get('/books/borrows/update/{id}', [BorrowController::class, 'update']);
 
 Route::middleware([
     'auth:sanctum',
