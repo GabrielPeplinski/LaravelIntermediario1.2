@@ -8,8 +8,7 @@
     <p>Você ainda não emprestou nenhum livro!</p>
 </div>
 @else
-@for($i = 0; $i < count($myBorrows); $i++) 
-<div class="card bg-primary mb-2" style="width: 18rem;">
+@for($i = 0; $i < count($myBorrows); $i++) <div class="card bg-primary mb-2" style="width: 18rem;">
     <div class="card-body">
         @if($myBorrows[$i]->book_id === $books[$i]->id)
         <h5 class="card-title text-dark">Título : {{ $books[$i]->title }}</h5>
