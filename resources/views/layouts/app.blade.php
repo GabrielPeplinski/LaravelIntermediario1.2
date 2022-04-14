@@ -8,8 +8,8 @@
 @include('layouts.partials.nav-bar')
 
 <!--Main layout-->
-<main class="container-fluid mt-70px">
-    <div class="container-fluid p-5">
+<main class="container-fluid">
+    <div class="container-fluid p-1">
         @yield('content')
     </div>
 </main>
