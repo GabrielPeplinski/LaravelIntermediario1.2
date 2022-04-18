@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid ml-30px">
     <form action="/books" method="POST">
         @csrf
         <div class="col-lg-11 col-md-10 col-sm-10 col-xs-12 mb-2">

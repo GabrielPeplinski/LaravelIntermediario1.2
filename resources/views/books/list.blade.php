@@ -10,27 +10,25 @@
 @else
 @foreach($books as $book)
 <div class="container">
-    <table class="table  col-md-8 col-sm-8 col-xs-11">
+    <table class="table  col-md-8 col-sm-8 col-xs-10">
         <thead>
             <tr>
-                <th class="col-md-2.4 col-sm-2.4 col-xs-1.2">Título</th>
-                <th class="col-md-2.4 col-sm-2.4 col-xs-1.2">Autor</th>
-                <th class="col-md-2.4 col-sm-2.4 col-xs-1.2">Doador</th>
-                <th class="col-md-2.4 col-sm-2.4 col-xs-1.2">Adicionado</th>
-                <th class="col-md-2.4 col-sm-2.4 col-xs-0.8">Disponibilidade</th>
+                <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">Título</th>
+                <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">Autor</th>
+                <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">Doador</th>
+                <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">Situação</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->title }}</td>
-                <td class="col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->author }}</td>
-                <td class="col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->donor }}</td>
-                <td class="col-md-2.4 col-sm-2.4 col-xs-1.2">{{date( 'd/m/Y' ,strtotime($book->created_at))}}</td>
+                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->title }}</td>
+                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->author }}</td>
+                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">{{ $book->donor }}</td>
 
                 @if ($book -> available === 0)
-                <td class="col-md-2.4 col-sm-2.4 col-xs-0.8">Emprestado!</td>
+                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">Emprestado!</td>
                 @else
-                <td class="col-md-2.4 col-sm-2.4 col-xs-0.8">Disponível</td>
+                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">Disponível</td>
                 @endif
 
                 <td class="col-md-2.4 col-sm-1.5 col-xs-2">
