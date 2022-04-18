@@ -71,9 +71,7 @@ table {
 }
 
 @media (min-width: 1200px){
-    div, table, h1, h2, h3, label {
-        font-size: 1.05em;
-    }
+    
 
     table {
         margin-top : 30px;

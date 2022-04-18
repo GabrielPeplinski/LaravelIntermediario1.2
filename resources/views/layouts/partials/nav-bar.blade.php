@@ -1,4 +1,4 @@
-<nav>
+<nav class="col-12">
     <div class="container-fluid justify-content-center">
         <div class="row bg-primary">
             @auth
