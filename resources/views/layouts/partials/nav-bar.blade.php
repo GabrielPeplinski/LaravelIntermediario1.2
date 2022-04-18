@@ -29,10 +29,10 @@
             </div>
             @endauth
             @guest
-            <div class="col-md-6 col-sm-4 col-xs-12">
+            <div id="login" class="col-md-6 col-sm-4 col-xs-12">
                 <a class="nav-link text-dark text-center" href="/login">Entrar</a>
             </div>
-            <div class="col-md-6 col-sm-4 col-xs-12">
+            <div id="login" class="col-md-6 col-sm-4 col-xs-12">
                 <a class="nav-link text-dark text-center" href="/register">Registrar Usuário</a>
             </div>
             @endguest
