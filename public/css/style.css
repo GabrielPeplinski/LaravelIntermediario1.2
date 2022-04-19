@@ -21,8 +21,7 @@ table {
 }
 
 .navbar-toggler-icon{
-  width: 2em;
-  heigth: 2em;
+  font-size: 2em;
 }
 
 nav{

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3>Livros Que Você emprestou:</h3>
+<h2>Livros Que Você emprestou:</h2>
 
 @if (count($myBorrows) === 0)
 <div class="alert alert-danger" role="alert">
@@ -23,8 +23,10 @@
             <tr>
                 <td class="col-md-2.4 col-sm-2.4 col-xs-2">{{ $books[$i]->title }}</td>
                 <td class="col-md-2 col-sm-1.2 col-xs-1.2"> {{ $books[$i]->author }}</td>
-                <td class="col-md-2.4 col-sm-2.4 col-xs-2">{{date('d/m/Y',strtotime($myBorrows[$i]->created_at))}}</td>
-                <td class="col-md-2.4 col-sm-2.4 col-xs-2">{{date( 'd/m/Y',strtotime($myBorrows[$i]->return_date))}}
+                <td class="col-md-2.4 col-sm-2.4 col-xs-2">{{date('d/m/Y',
+                    strtotime($myBorrows[$i]->created_at))}}</td>
+                <td class="col-md-2.4 col-sm-2.4 col-xs-2">{{date( 'd/m/Y',
+                    strtotime($myBorrows[$i]->return_date))}}
                 </td>
             </tr>
         </tbody>
@@ -52,3 +54,4 @@
     @endfor
     @endif
     @endsection
+    

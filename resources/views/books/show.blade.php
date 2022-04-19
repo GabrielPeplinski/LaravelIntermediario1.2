@@ -1,33 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
-    <table class="table col-md-8 col-sm-8 col-xs-10">
-        <thead>
-            <tr>
-                <th class="col-md-2 col-sm-2 col-xs-2">Título:</th>
-                <th class="col-md-2 col-sm-2 col-xs-1.5">Autor</th>
-                <th class="col-md-2 col-sm-0.8 col-xs-0.8">Doador</th>
-                <th class="col-md-2 col-sm-2 col-xs-2">Adicionado</th>
-                <th class="col-md-2 col-sm-2 col-xs-1">Situação</th>
-            </tr>
-        </thead>
+    <table class="table table-bordered table-striped col-lg-7 col-md-6 col-sm-8 col-xs-8 text-center">
         <tbody>
             <tr>
-                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->title }}</td>
-                <td class="col-md-2 col-sm-2 col-xs-1">{{ $book->author }}</td>
-                <td class="col-md-2 col-sm-0.5 col-xs-0.5">{{ $book->donor }}</td>
-                <td class="col-md-2 col-sm-2 col-xs-2">{{date( 'd/m/Y' ,strtotime($book->created_at))}}</td>
-
-                @if ($book -> available === 0)
-                <td class="col-md-2 col-sm-2 col-xs-1">Emprestado!</td>
-                @else
-                <td class="col-md-2 col-sm-2 col-xs-1">Disponível</td>
-                @endif
+                <th class="col-md-2 col-sm-2 col-xs-2">ID do Livro</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->id }}</td>
             </tr>
             <tr>
-                <td class="col-xg-2 col-lg-2 col-md-3 col-sm-3 col-xs-4">
+                <th class="col-md-2 col-sm-2 col-xs-2">Título</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->title }}</td>
+            </tr>
+            <tr>
+                <th class="col-md-2 col-sm-2 col-xs-2">Autor</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->author }}</td>
+            </tr>
+            <tr>
+                <th class="col-md-2 col-sm-2 col-xs-2">Doador</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->donor }}</td>
+            </tr>
+            <tr>
+                <th class="col-md-2 col-sm-2 col-xs-2">Adicionado</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{date( 'd/m/Y' ,strtotime($book->created_at))}}</td>
+
+            </tr>
+            <tr>
+                <th class="col-md-2 col-sm-2 col-xs-2">Situação</th>
+                @if ($book -> available === 0)
+                <td class="col-md-2 col-sm-2 col-xs-2">Emprestado!</td>
+                @else
+                <td class="col-md-2 col-sm-2 col-xs-2">Disponível</td>
+                @endif
+            </tr>
+            <div>
+
+            </div>
+        </tbody>
+    </table>
+    <table class="text-center">
+        <tbody>
+            <tr class="mt-2">
+                <th class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div>
                         <form action="/books/edit/{{ $book->id }}" method="POST">
                             @csrf
@@ -35,8 +49,8 @@
                             <button type="submit" class="btn-sm btn-secondary text-dark">Editar</button>
                         </form>
                     </div>
-                </td>
-                <td class="col-xg-2 col-lg-2 col-md-3 col-sm-3 col-xs-4">
+                </th>
+                <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div>
                         <form action="/books/delete/{{ $book->id }}" method="POST">
                             @csrf
@@ -45,7 +59,7 @@
                         </form>
                     </div>
                 </td>
-                <td class="col-xg-2 col-lg-2 col-md-3 col-sm-3 col-xs-4">
+                <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div>
                         @if ($book -> available === 1)
                         <form action="/books/borrow/{{ $book->id }}" method="POST">
@@ -60,4 +74,5 @@
         </tbody>
     </table>
 </div>
+
 @endsection

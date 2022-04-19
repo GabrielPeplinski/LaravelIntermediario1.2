@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3>Livros Que Cadastrados:</h3>
+<h2>Livros Que Cadastrados:</h2>
 
 @if (count($books) === 0)
 <div class="alert alert-danger" role="alert">
