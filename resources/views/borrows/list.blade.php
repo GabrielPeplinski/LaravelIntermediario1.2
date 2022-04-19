@@ -29,8 +29,8 @@
             </tr>
         </tbody>
         <div class="row">
-            <td>
-                <div class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
+            <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
+                <div>
                     <form class="w-10" action="/books/borrows/update/{{ $myBorrows[$i]->id }}" method="POST">
                         @csrf
                         @method('GET')
@@ -38,8 +38,8 @@
                     </form>
                 </div>
             </td>
-            <td>
-                <div class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
+            <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
+                <div>
                     <form class="w-10" action="/books/borrows/delete/{{ $myBorrows[$i]->id }}" method="POST">
                         @csrf
                         @method('DELETE')
