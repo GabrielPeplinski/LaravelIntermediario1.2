@@ -10,7 +10,7 @@
 @else
 @foreach($books as $book)
 <div class="container">
-    <table class="table col-md-8 col-sm-8 col-xs-10">
+    <table class="table table-striped col-md-8 col-sm-8 col-xs-10">
         <thead>
             <tr>
                 <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">Título</th>
