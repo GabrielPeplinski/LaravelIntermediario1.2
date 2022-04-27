@@ -9,16 +9,15 @@ class CreateBookAction
 {
     public function execute(array $data, User $donor):Book
     {
-        $book = new Book;
+        $book = app(Book::class);
 
-        $book->title = $data['title'];
-        $book->author = $data['author'];
-        $book->donor = $data['donor'];
+        $book->fill($data);
         $book->available = true;
 
         $book->user_id = $donor->id;
 
         $book->save();
+
         return $book;
     }
 }

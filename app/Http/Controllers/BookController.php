@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Book\UpdateBookAction;
 use Illuminate\Http\Request;
 
 use App\Models\Book;
@@ -25,13 +26,6 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        /*
-        BookRequest $bookRequest
-        $data = $bookRequest->validated();
-        
-        Book::query()->create($data);
-        */
-
         (new CreateBookAction())->execute($request->only(['title', 'author', 'donor']), auth()->user());
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
@@ -65,7 +59,13 @@ class BookController extends Controller
     public function update(Request $request)
     {
         $book = Book::findOrFail($request->id);
-        
+        /*
+
+        (new UpdateBookAction())->execute($request->only(['$book->title', '$book->author', '$book->donor']),
+            auth()->user());
+
+        */
+
         $book->title = $request->title;
         $book->author = $request->author;
         $book->donor = $request->donor;
