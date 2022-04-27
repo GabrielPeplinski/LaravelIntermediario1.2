@@ -7,7 +7,7 @@ use App\Models\Book;
 
 class CreateBookAction
 {
-    public fuction execute(array $data, User $donor):Book
+    public function execute(array $data, User $donor):Book
     {
         $book = new Book;
 

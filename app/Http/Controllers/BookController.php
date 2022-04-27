@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Borrow;
 use App\Http\Requests\BookRequest;
+use App\Actions\Book\CreateBookAction;
 
 class BookController extends Controller
 {
@@ -31,7 +32,7 @@ class BookController extends Controller
         Book::query()->create($data);
         */
 
-        
+        (new CreateBookAction())->execute($request->only(['title', 'author', 'donor']), auth()->user());
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
     }
