@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Book\DeleteBookAction;
+use App\Actions\Book\ShowBookAction;
 use App\Actions\Book\UpdateBookAction;
 use Illuminate\Http\Request;
 
@@ -34,7 +36,6 @@ class BookController extends Controller
     public function list()
     {
         $books = Book::all();
-        $borrows = Borrow::all();
         return view('books.list', ['books' => $books]);
     }
 
@@ -46,7 +47,10 @@ class BookController extends Controller
 
     public function destroy($id)
     {
-        $book = Book::findOrFail($id)->delete();
+        $book = Book::findOrFail($id);
+
+        (new DeleteBookAction())->execute($book);
+
         return redirect('/')->with('msg', 'Livro Deletado com Sucesso!');
     }
 
@@ -59,12 +63,6 @@ class BookController extends Controller
     public function update(Request $request)
     {
         $book = Book::findOrFail($request->id);
-        /*
-
-        (new UpdateBookAction())->execute($request->only(['$book->title', '$book->author', '$book->donor']),
-            auth()->user());
-
-        */
 
         $book->title = $request->title;
         $book->author = $request->author;
