@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Borrow\CreateBorrowAction;
 use Illuminate\Http\Request;
 
 use App\Models\Book;
@@ -9,8 +10,13 @@ use App\Models\Borrow;
 
 class BorrowController extends Controller
 {
+
+    /*
+     * Sem usar Action
+     *
     public function create($id)
-    {   
+    {
+        $book = Book::findOrFail($id);
         $borrow = new Borrow;
         $book = Book::findOrFail($id);
         $user = auth()->user();
@@ -21,9 +27,20 @@ class BorrowController extends Controller
         ]);
 
         $book->available = false;
-       
+
         $book->save();
-        
+
+        return redirect('/')->with('msg', 'Livro Emprestado com Sucesso!');
+    }
+    */
+
+    public function create($id)
+    {
+        $book = Book::findOrFail($id);
+        $userBorrow = auth()->user();
+
+        (new CreateBorrowAction())->execute($userBorrow, $book);
+
         return redirect('/')->with('msg', 'Livro Emprestado com Sucesso!');
     }
 
@@ -31,16 +48,16 @@ class BorrowController extends Controller
     {
         /*$borrows = Borrow::all();*/
         $borrows = auth()->user()->borrowed;
-    
+
         /*$books = Book::all();*/
         $user = auth()->user();
         $books = [];
 
-        foreach($borrows as $borrow) {  
+        foreach($borrows as $borrow) {
             array_push($books, $borrow->book);
         }
 
-        return view('borrows.list',['myBorrows' => $borrows, 
+        return view('borrows.list',['myBorrows' => $borrows,
                 'books' => $books])->with('Livros Encontrados!');
     }
 
