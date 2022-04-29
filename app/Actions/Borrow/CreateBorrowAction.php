@@ -12,21 +12,22 @@ class CreateBorrowAction
     {
         $borrow = app(Borrow::class);
 
-//        $borrow->book_id = $book->id;
-//        $borrow->user_id = $userBorrow->id;
-//        $borrow->return_date = date('Y-m-d ', strtotime('+1 week'));
-//        $book->available = false;
-//
-//        $book->save();
-//        $borrow->save();
+        $borrow->book_id = $book->id;
+        $borrow->user_id = $userBorrow->id;
+        $borrow->return_date = date('Y-m-d ', strtotime('+1 week'));
+        $book->available = false;
 
+        /*
         $borrowData = [
             'book_id' => $book->id,
             'user_id' => $userBorrow->id,
             'return_date' => date('Y-m-d ', strtotime('+1 week')),
         ];
 
+
         $borrow = Borrow::create($borrowData);
+        */
+        $borrow->save();
         $book->update([
             'available' => false
         ]);
