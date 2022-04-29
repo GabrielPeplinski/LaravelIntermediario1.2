@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Doador</th>
-                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->donor }}</td>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->user_id }}</td>
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Adicionado</th>

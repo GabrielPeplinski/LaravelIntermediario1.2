@@ -23,7 +23,7 @@
             <tr>
                 <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->title }}</td>
                 <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->author }}</td>
-                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">{{ $book->donor }}</td>
+                <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">{{ $book->user_id }}</td>
 
                 @if ($book -> available === 0)
                 <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">Emprestado!</td>
