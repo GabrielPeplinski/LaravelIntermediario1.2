@@ -64,14 +64,6 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($request->id);
 
-        /*
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->donor = $request->donor;
-
-
-        $book->save();
-        */
         (new UpdateBookAction())->execute($request->only('title', 'author', 'donor'), $book);
 
         return redirect('/')->with('msg', 'Livro Atualizado com Sucesso!');
