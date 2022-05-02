@@ -15,11 +15,7 @@ class CreateBookActionTest extends TestCase
         parent::setUp();
         $this->action = new CreateBookAction();
     }
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+
     public function test_should_create_book_when_valid_data()
     {
         $this->partialMock(Book::class, function(MockInterface $mock){
