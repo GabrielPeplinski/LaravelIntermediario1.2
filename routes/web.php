@@ -32,7 +32,7 @@ Route::get('/books/edit/{id}', [BookController::class, 'edit'])->middleware('aut
 
 Route::put('/books/update/{id}', [BookController::class, 'update'])->middleware('auth');;
 
-Route::post('/books/borrow/{id}', [BorrowController::class, 'create'])->middleware('auth');
+Route::post('/books/borrow/{id}', [BorrowController::class, 'store'])->middleware('auth');
 
 Route::get('/books/borrows/list', [BorrowController::class, 'list'])->middleware('auth');
 

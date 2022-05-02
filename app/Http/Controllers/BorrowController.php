@@ -34,7 +34,7 @@ class BorrowController extends Controller
     }
     */
 
-    public function create($id)
+    public function store($id)
     {
         $book = Book::findOrFail($id);
         $userBorrow = auth()->user();
