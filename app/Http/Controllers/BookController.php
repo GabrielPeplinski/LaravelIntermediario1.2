@@ -68,6 +68,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($request->id);
         $donor = User::findOrFail($request->donorId);
+        dd($request->donorId[0]);
 
         (new UpdateBookAction())->execute($request->only('title', 'author'), $donor, $book);
 
