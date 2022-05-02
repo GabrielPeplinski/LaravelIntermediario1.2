@@ -30,7 +30,6 @@ class CreateBookActionTest extends TestCase
         $data = [
             'title'=>'Viagem Ao Centro da Terra',
             'author'=>'Julio Verne',
-            'donor'=>'Gabriel'
         ];
 
         $user = new User();
