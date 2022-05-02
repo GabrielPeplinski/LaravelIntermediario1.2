@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Borrow\CreateBorrowAction;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Actions\Borrow\DeleteBorrowAction;
+use App\Actions\Borrow\UpdateBorrowAction;
 
 use App\Models\Book;
 use App\Models\Borrow;
 
 class BorrowController extends Controller
 {
-
     /*
      * Sem usar Action
      *
@@ -47,11 +46,7 @@ class BorrowController extends Controller
 
     public function list()
     {
-        /*$borrows = Borrow::all();*/
         $borrows = auth()->user()->borrowed;
-
-        /*$books = Book::all();*/
-        $user = auth()->user();
         $books = [];
 
         foreach($borrows as $borrow) {
@@ -65,15 +60,9 @@ class BorrowController extends Controller
     public function destroy($id)
     {
         $borrow = Borrow::findOrFail($id);
-        $books = Book::all();
 
-        foreach($books as $book){
-            if($book->id === $borrow->book_id)
-                $book->available = true;
-                $book->save();
-        }
+        (new DeleteBorrowAction())->execute($borrow);
 
-        $borrow->delete();
         return redirect('/')->with('msg', 'Livro Devolvido com Sucesso!');
     }
 
@@ -81,9 +70,7 @@ class BorrowController extends Controller
     {
         $borrow = Borrow::findOrFail($id);
 
-        $old_date = $borrow -> return_date;
-        $borrow->return_date = date('Y-m-d ', strtotime('+1week',strtotime($old_date)));
-        $borrow->save();
+        (new UpdateBorrowAction())->execute($borrow);
 
         return redirect('/')->with('msg', 'Empréstimo Prolongado com Sucesso!');
     }

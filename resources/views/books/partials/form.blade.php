@@ -11,14 +11,6 @@
             <input type="text" class="form-control form-control-sm" name="author" placeholder="Quem é o autor?"
                 required>
         </div>
-        <div class="col-lg-11 col-md-10 col-sm-10 col-xs-12 mb-2">
-            <label for="labelForDonor" class="form-label">Quem o trouxe:</label>
-            <select name="userDonor" id="userDonor">
-                @foreach($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-            </select>
-        </div>
         <button type="submit" class="btn btn-sm btn-primary text-dark" value="Add Book">Cadastrar</button>
     </form>
 </div>

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Book\CreateBookAction;
 use App\Actions\Book\DeleteBookAction;
-use App\Actions\Book\ShowBookAction;
 use App\Actions\Book\UpdateBookAction;
 use Illuminate\Http\Request;
 
 use App\Models\Book;
 use App\Models\User;
-use App\Http\Requests\BookRequest;
-use App\Actions\Book\CreateBookAction;
 
 class BookController extends Controller
 {
@@ -29,7 +27,7 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $user = User::findOrFail($request->id);
+        $user = auth()->user();
 
         (new CreateBookAction())->execute($request->only(['title', 'author']), $user);
 
@@ -59,6 +57,7 @@ class BookController extends Controller
 
     public function edit($id)
     {
+        // Retornando todos os usuários para a escolha do ID
         $users = User::all();
 
         $book = Book::findOrFail($id);
@@ -68,8 +67,9 @@ class BookController extends Controller
     public function update(Request $request)
     {
         $book = Book::findOrFail($request->id);
+        $donor = User::findOrFail($request->donorId);
 
-        (new UpdateBookAction())->execute($request->only('title', 'author'), $book);
+        (new UpdateBookAction())->execute($request->only('title', 'author'), $donor, $book);
 
         return redirect('/')->with('msg', 'Livro Atualizado com Sucesso!');
     }

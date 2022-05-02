@@ -17,12 +17,21 @@
                 required>
         </div>
         <div class="col-lg-11 col-md-10 col-sm-10 col-xs-12 mb-2">
-            <label for="labelForDonor" class="form-label">Quem o trouxe:</label>
-            <select name="userDonor" id="userDonor">
+            <table class="table col-md-8 col-sm-8 col-xs-10">
+                <thead>
+                    <th>Nome</th>
+                    <th>Id</th>
+                </thead>
                 @foreach($users as $user)
-                    <option value="{{ $user->id }}">@if {'selected'} @endif{{ $user->name }}</option>
+                    <tbody>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->id }}</td>
+                    </tbody>
                 @endforeach
-            </select>
+            </table>
+            <label for="labelForDonor" class="form-label">Insira o ID de quem o trouxe:</label>
+            <input type="text" class="form-control form-control-sm" name="donorId" value="{{ $book->user_id }}"
+                   required>
         </div>
         <button type="submit" class="btn btn-primary text-dark" value="Add Book">Atualizar Livro</button>
     </form>
