@@ -14,6 +14,10 @@ class Book extends Model
     protected $fillable = [
         'id' ,'title', 'author', 'available', 'user_id'
     ];
+    /**
+     * @var int|mixed
+     */
+    private $user_id;
 
     public function user()
     {
