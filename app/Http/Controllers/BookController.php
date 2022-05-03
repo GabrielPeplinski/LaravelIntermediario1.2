@@ -57,7 +57,6 @@ class BookController extends Controller
 
     public function edit($id)
     {
-        // Retornando todos os usuários para a escolha do ID
         $users = User::all();
 
         $book = Book::findOrFail($id);
@@ -67,8 +66,7 @@ class BookController extends Controller
     public function update(Request $request)
     {
         $book = Book::findOrFail($request->id);
-        $donor = User::findOrFail($request->donorId);
-        dd($request->donorId[0]);
+        $donor = User::findOrFail($request->donorId[0]);
 
         (new UpdateBookAction())->execute($request->only('title', 'author'), $donor, $book);
 

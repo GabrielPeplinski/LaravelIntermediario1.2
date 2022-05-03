@@ -17,10 +17,10 @@
                 required>
         </div>
         <div class="col-lg-11 col-md-10 col-sm-10 col-xs-12 mb-2">
-            <label for="labelForDonor" class="form-label">Insira o ID de quem o trouxe:</label>
+            <label for="labelForDonor" class="form-label">Quem o trouxe:</label>
             <br>
             @foreach($users as $user)
-                <input type="checkbox" name="donorId[]" value="{{ $user->id }}" class="radio">
+                <input type="radio" name="donorId[]" value="{{ $user->id }}" class="radio">
                     {{  $user->name }}
                 </input>
                 <br>
