@@ -5,7 +5,6 @@ namespace Tests\Unit\Actions\Book;
 use App\Actions\Book\DeleteBookAction;
 use App\Models\Book;
 use App\Models\User;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 class DeleteBookActionTest extends TestCase
@@ -32,7 +31,6 @@ class DeleteBookActionTest extends TestCase
         $bookMock->author = 'J.K. Rowling';
         $bookMock->available = true;
 
-        //dd($bookMock);
         $bookMock->expects($this->once())->method('delete')->willReturn(true);
 
         $this->action->execute($bookMock);

@@ -39,6 +39,5 @@ class CreateBookActionTest extends TestCase
         $this->assertEquals('Viagem Ao Centro da Terra', $book->title);
         $this->assertEquals('Julio Verne', $book->author);
         $this->assertEquals(1, $book->user_id);
-
     }
 }

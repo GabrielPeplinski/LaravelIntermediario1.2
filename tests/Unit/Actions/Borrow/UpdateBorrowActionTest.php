@@ -50,12 +50,10 @@ class UpdateBorrowActionTest extends TestCase
             'return_date' => '2022-05-04'
         ];
 
-        //$borrow = new Borrow();
         $borrow->fill($borrowData);
 
         $borrowAns = $this->action->execute($borrow);
 
-        //dd($borrow->book_id);
         // Testing the book
         $this->assertEquals(66, $book->id);
         $this->assertEquals('Odisséia', $book->title);

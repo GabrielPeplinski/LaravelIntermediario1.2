@@ -10,7 +10,6 @@ class UpdateBookAction
     public function execute(array $data, User $donor, Book $book):Book
     {
         $data['user_id'] = $donor->id;
-        //$book = app(Book::class);
         $book->fill($data);
         $book->save();
 
