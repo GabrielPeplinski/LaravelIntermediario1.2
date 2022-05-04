@@ -19,40 +19,56 @@ class UpdateBorrowActionTest extends TestCase
 
     public function test_should_update_borrow_when_called()
     {
-        $this->partialMock(Borrow::class, function(MockInterface $mock){
+        $borrow = $this->partialMock(Borrow::class, function(MockInterface $mock){
             $mock->shouldReceive('save')
                 ->once();
         });
 
-        $user = new User();
-        $user->id = 44;
-        $user->name = 'João Testi';
+        $data = [
+            'id' => 66,
+            'title'=>'Odisséia',
+            'author'=>'Homero',
+            'available' => true,
+            'user_id' => 5
+        ];
 
         $book = new Book();
-        $book->id = 100;
-        $book->title = 'Harry Potter';
-        $book->author = 'J.K. Howling';
-        $book->user_id = 44;
+        $book->fill($data);
 
-        $borrow = new Borrow();
-        $borrow->id = 1;
-        $borrow->user_id = $user->id;
-        $borrow->book_id = $book->id;
+        $userData = [
+            'name' => 'Caio'
+        ];
+
+        $user = new User();
+        $user->fill($userData);
+        $user->id = 41;
+
+        $borrowData = [
+            'id' => 5,
+            'book_id' => $book->id,
+            'user_id' => $user->id,
+            'return_date' => '2022-05-04'
+        ];
+
+        //$borrow = new Borrow();
+        $borrow->fill($borrowData);
 
         $borrowAns = $this->action->execute($borrow);
 
+        //dd($borrow->book_id);
         // Testing the book
-        $this->assertEquals(100, $book->id);
-        $this->assertEquals('Harry Potter', $book->title);
-        $this->assertEquals('J.K. Howling', $book->author);
+        $this->assertEquals(66, $book->id);
+        $this->assertEquals('Odisséia', $book->title);
+        $this->assertEquals('Homero', $book->author);
 
         // Testing the user
-        $this->assertEquals('João Teste', $user->name);
-        $this->assertEquals(44, $user->id);
+        $this->assertEquals('Caio', $user->name);
+        $this->assertEquals(41, $user->id);
 
         // Testing the borrow
         $this->isInstanceOf(Borrow::class, $borrowAns);
-        $this->assertEquals(100, $borrowAns->book_id);
-        $this->assertEquals(44, $borrowAns->user_id);
+        $this->assertEquals(66, $borrowAns->book_id);
+        $this->assertEquals(41, $borrowAns->user_id);
+        $this->assertEquals('2022-05-11', $borrowAns->return_date);
     }
 }

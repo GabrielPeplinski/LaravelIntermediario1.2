@@ -17,7 +17,7 @@ class DeleteBorrowActionTest extends TestCase
         $this->action = new DeleteBorrowAction();
     }
 
-    public function test_should_delete_borrow_when_valid_data()
+    public function test_should_delete_borrow()
     {
         $bookMock = $this->createMock(Book::class);
         $userMock = $this->createMock(User::class);
