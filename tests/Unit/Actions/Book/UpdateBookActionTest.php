@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Actions\Book;
 
+use App\Actions\Book\CreateBookAction;
 use App\Actions\Book\UpdateBookAction;
 use App\Models\Book;
 use App\Models\User;
@@ -13,20 +14,21 @@ class UpdateBookActionTest extends TestCase
     protected function setUp():void
     {
         parent::setUp();
-        $this->action = new UpdateBookAction();
+        $this->createAction = new CreateBookAction();
+        $this->updateAction = new UpdateBookAction();
     }
 
     public function test_should_update_book_when_valid_data()
     {
-        /*
+
         $this->partialMock(Book::class, function(MockInterface $mock){
             $mock->shouldReceive('save')
                 ->once();
         });
-        */
 
-        $bookMock = $this->createMock(Book::class);
-        $userMock = $this->createMock(User::class);
+
+//        $bookMock = $this->createMock(Book::class);
+//        $userMock = $this->createMock(User::class);
 
         $data = [
             'title'=>'20 Mil léguas Submarinas',
@@ -35,17 +37,23 @@ class UpdateBookActionTest extends TestCase
             'user_id' => 2
         ];
 
-        $bookMock->fill($data);
-        $userMock->id = 78;
+        $user = new User();
+        $user->id = 1;
 
-        $bookUpadted = $this->action->execute(['Harry Potter', 'J.K. Howling'], $userMock, $bookMock);
+        $book = $this->createAction->execute($data, $user);
 
-        $this->assertInstanceOf(Book::class, $bookUpadted);
-        $this->assertEquals('Harry Potter', $bookMock->title);
-        $this->assertEquals('J.K. Howling', $bookMock->author);
-        $this->assertEquals(1, $bookMock->user_id);
+        $data = [
+            'title' => 'Harry Potter',
+            'author' => 'J.K. Howling'
+        ];
+        $bookUpdated = $this->updateAction->execute($data, $user, $book);
 
-        $bookUpadted = $this->$bookMock->expects($this->once())
+        $this->assertInstanceOf(Book::class, $bookUpdated);
+        $this->assertEquals($data['title'], $bookUpdated->title);
+        $this->assertEquals('J.K. Howling', $bookUpdated->author);
+        $this->assertEquals(1, $bookUpdated->user_id);
+
+        $bookUpdated = $this->$book->expects($this->once())
             ->method('save');
     }
 }

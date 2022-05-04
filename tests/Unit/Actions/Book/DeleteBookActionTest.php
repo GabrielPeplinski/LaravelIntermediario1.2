@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class DeleteBookActionTest extends TestCase
 {
-    protected function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->action = new DeleteBookAction();
@@ -23,6 +23,8 @@ class DeleteBookActionTest extends TestCase
 
         $userMock->id = 12;
         $userMock->name = 'Pedro Testi';
+        $userMock->email = 'testipedro@email.com';
+        $userMock->password = '12345678';
 
         $bookMock->id = 23;
         $bookMock->user_id = $userMock->id;

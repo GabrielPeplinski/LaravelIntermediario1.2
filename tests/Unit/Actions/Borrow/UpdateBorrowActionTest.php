@@ -51,8 +51,8 @@ class UpdateBorrowActionTest extends TestCase
         $this->assertEquals(44, $user->id);
 
         // Testing the borrow
-        $this->isInstanceOf(Borrow::class, $borrow);
-        $this->assertEquals(100, $borrow->book_id);
-        $this->assertEquals(44, $borrow->user_id);
+        $this->isInstanceOf(Borrow::class, $borrowAns);
+        $this->assertEquals(100, $borrowAns->book_id);
+        $this->assertEquals(44, $borrowAns->user_id);
     }
 }
