@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Book\CreateBookAction;
 use App\Actions\Book\DeleteBookAction;
 use App\Actions\Book\UpdateBookAction;
-use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
 
 use App\Models\Book;
 use App\Models\User;
@@ -25,11 +25,13 @@ class BookController extends Controller
         return view('books.create', ['user' => $user, 'users' => $users]);
     }
 
-    public function store(Request $request)
+
+    public function store(BookRequest $request)
     {
+        $data = $request->validated('title', 'author');
         $user = auth()->user();
 
-        (new CreateBookAction())->execute($request->only(['title', 'author']), $user);
+        (new CreateBookAction())->execute($data, $user);
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
     }
@@ -63,12 +65,14 @@ class BookController extends Controller
         return view('books.edit', ['book' => $book, 'users' => $users]);
     }
 
-    public function update(Request $request)
+    public function update(BookRequest $request)
     {
+        $data = $request->validated('title', 'author');
+
         $book = Book::findOrFail($request->id);
         $donor = User::findOrFail($request->donorId[0]);
 
-        (new UpdateBookAction())->execute($request->only('title', 'author'), $donor, $book);
+        (new UpdateBookAction())->execute($data, $donor, $book);
 
         return redirect('/')->with('msg', 'Livro Atualizado com Sucesso!');
     }
