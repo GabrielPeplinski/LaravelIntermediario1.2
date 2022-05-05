@@ -2,20 +2,17 @@
 
 namespace App\Actions\Borrow;
 
+use App\Actions\Book\MakeBookAvailableAction;
 use App\Models\Borrow;
-use App\Models\Book;
 
 class DeleteBorrowAction
 {
     public function execute(Borrow $borrow):bool
     {
-        $books = Book::all();
+//        $otherBook = new Book();
+//        $borrow->setRelation('book', $otherBook);
 
-        foreach($books as $book){
-            if($book->id === $borrow->book_id)
-                $book->available = true;
-            $book->save();
-        }
+        app(MakeBookAvailableAction::class)->execute($borrow->book);
 
         return $borrow->delete();
     }

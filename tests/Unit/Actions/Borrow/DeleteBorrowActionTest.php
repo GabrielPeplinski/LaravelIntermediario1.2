@@ -2,10 +2,11 @@
 
 namespace Tests\Unit\Actions\Borrow;
 
+use App\Actions\Book\MakeBookAvailableAction;
 use App\Actions\Borrow\DeleteBorrowAction;
 use App\Models\Book;
 use App\Models\Borrow;
-use App\Models\User;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 class DeleteBorrowActionTest extends TestCase
@@ -18,9 +19,15 @@ class DeleteBorrowActionTest extends TestCase
 
     public function test_should_delete_borrow()
     {
-        $borrowMock = $this->createMock(Borrow::class);
+        $this->partialMock(MakeBookAvailableAction::class, function (MockInterface $mock){
+            $mock->shouldReceive('execute')->once();
+        });
 
-        $borrowMock->expects($this->once())->method('delete')->willReturn(true);
+        $borrowMock = $this->partialMock(Borrow::class, function (MockInterface  $mock){
+            $mock->shouldReceive('delete')->once()->andReturn(true);
+        });
+
+        $borrowMock->setRelation('book', new Book());
 
         $this->action->execute($borrowMock);
     }
