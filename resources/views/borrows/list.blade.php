@@ -21,36 +21,36 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th class="col-md-2.4 col-sm-2.4 col-xs-2">
+                        <td class="col-md-2.4 col-sm-2.4 col-xs-2">
                             {{ $borrow->book->title }}
-                        </th>
-                        <th class="col-md-2 col-sm-1.2 col-xs-1.2">
+                        </td>
+                        <td class="col-md-2 col-sm-1.2 col-xs-1.2">
                             {{ $borrow->book->author }}
-                        </th>
-                        <th class="col-md-2.4 col-sm-2.4 col-xs-2">
+                        </td>
+                        <td class="col-md-2.4 col-sm-2.4 col-xs-2">
                             {{date('d/m/Y',strtotime($borrow->created_at))}}
-                        </th>
-                        <th class="col-md-2.4 col-sm-2.4 col-xs-2">
+                        </td>
+                        <td class="col-md-2.4 col-sm-2.4 col-xs-2">
                             {{date('d/m/Y',strtotime($borrow->return_date))}}
-                        </th>
+                        </td>
                     </tr>
                     </tbody>
-                    <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
+                    <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
                         <form class="w-10" action="/books/borrows/update/{{ $borrow->id }}"
                               method="POST">
                             @csrf
                             @method('GET')
                             <button type="submit" class="btn-sm btn-success text-dark">Prolongar</button>
                         </form>
-                    </th>
-                    <th class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
+                    </td>
+                    <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
                         <form class="w-10" action="/books/borrows/delete/{{ $borrow->id }}"
                               method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn-sm btn-danger text-dark">Devolver</button>
                         </form>
-                    </th>
+                    </td>
                 </table>
             </div>
         @endforeach

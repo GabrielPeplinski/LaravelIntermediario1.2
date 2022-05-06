@@ -22,7 +22,6 @@
             @foreach($users as $user)
                 <input type="radio" name="donorId[]" value="{{ $user->id }}" class="radio" required>
                     {{  $user->name }}
-                </input>
                 <br>
             @endforeach
         </div>

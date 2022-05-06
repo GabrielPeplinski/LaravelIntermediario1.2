@@ -6,30 +6,30 @@
             <tbody>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">ID do Livro</th>
-                <th class="col-md-2 col-sm-2 col-xs-2">{{ $book->id }}</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->id }}</td>
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Título</th>
-                <th class="col-md-2 col-sm-2 col-xs-2">{{ $book->title }}</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->title }}</td>
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Autor</th>
-                <th class="col-md-2 col-sm-2 col-xs-2">{{ $book->author }}</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->author }}</td>
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Doador</th>
-                <th class="col-md-2 col-sm-2 col-xs-2">{{ $book->user->name }}</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->user->name }}</td>
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Adicionado</th>
-                <th class="col-md-2 col-sm-2 col-xs-2">{{date( 'd/m/Y' ,strtotime($book->created_at))}}</th>
+                <td class="col-md-2 col-sm-2 col-xs-2">{{date( 'd/m/Y' ,strtotime($book->created_at))}}</td>
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Situação</th>
                 @if ($book -> available === 0)
-                    <th class="col-md-2 col-sm-2 col-xs-2">Emprestado!</th>
+                    <td class="col-md-2 col-sm-2 col-xs-2">Emprestado!</td>
                 @else
-                    <th class="col-md-2 col-sm-2 col-xs-2">Disponível</th>
+                    <td class="col-md-2 col-sm-2 col-xs-2">Disponível</td>
                 @endif
             </tr>
             </tbody>
@@ -37,21 +37,21 @@
         <table class="text-center">
             <tbody>
             <tr class="mt-2">
-                <th class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <form action="/books/edit/{{ $book->id }}" method="POST">
                         @csrf
                         @method('GET')
                         <button type="submit" class="btn-sm btn-secondary text-dark">Editar</button>
                     </form>
-                </th>
-                <th class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                </td>
+                <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <form action="/books/delete/{{ $book->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn-sm btn-danger text-dark">Deletar</button>
                     </form>
-                </th>
-                <th class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                </td>
+                <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     @if ($book -> available === 1)
                         <form action="/books/borrow/{{ $book->id }}" method="POST">
                             @csrf
@@ -59,7 +59,7 @@
                             <button type="submit" class="btn-sm btn-success text-dark">Emprestar</button>
                         </form>
                     @endif
-                </th>
+                </td>
             </tr>
             </tbody>
         </table>
