@@ -45,4 +45,13 @@ class BorrowController extends Controller
 
         return redirect('/')->with('msg', 'Empréstimo Prolongado com Sucesso!');
     }
+
+    public function makeReport()
+    {
+        $borrows = Borrow::withTrashed()->get();
+
+        //dd($borrows);
+
+        return view('borrows.report',['borrows' => $borrows]);
+    }
 }
