@@ -24,14 +24,8 @@ class BorrowController extends Controller
     public function list()
     {
         $borrows = auth()->user()->borrowed;
-        $books = [];
 
-        foreach($borrows as $borrow) {
-            array_push($books, $borrow->book);
-        }
-
-        return view('borrows.list',['myBorrows' => $borrows,
-                'books' => $books])->with('Livros Encontrados!');
+        return view('borrows.list',['myBorrows' => $borrows])->with('Livros Encontrados!');
     }
 
     public function destroy($id)
