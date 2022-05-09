@@ -11,9 +11,8 @@ use App\Models\Borrow;
 
 class BorrowController extends Controller
 {
-    public function store($id)
+    public function store(Book $book)
     {
-        $book = Book::findOrFail($id);
         $userBorrow = auth()->user();
 
         (new CreateBorrowAction())->execute($userBorrow, $book);
@@ -28,19 +27,15 @@ class BorrowController extends Controller
         return view('borrows.list',['myBorrows' => $borrows])->with('Livros Encontrados!');
     }
 
-    public function destroy($id)
+    public function destroy(Borrow $borrow)
     {
-        $borrow = Borrow::findOrFail($id);
-
         (new DeleteBorrowAction())->execute($borrow);
 
         return redirect('/')->with('msg', 'Livro Devolvido com Sucesso!');
     }
 
-    public function update($id)
+    public function update(Borrow $borrow)
     {
-        $borrow = Borrow::findOrFail($id);
-
         (new UpdateBorrowAction())->execute($borrow);
 
         return redirect('/')->with('msg', 'Empréstimo Prolongado com Sucesso!');

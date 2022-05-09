@@ -22,9 +22,8 @@ class BookController extends Controller
         $user = auth()->user();
         $users = User::all();
 
-        return view('books.create', ['user' => $user, 'users' => $users]);
+        return view('books.create',compact('user', 'users'));
     }
-
 
     public function store(BookRequest $request)
     {
@@ -39,30 +38,27 @@ class BookController extends Controller
     public function list()
     {
         $books = Book::all();
-        return view('books.list', ['books' => $books]);
+
+        return view('books.list', compact('books'));
     }
 
-    public function show($id)
+    public function show(Book $book)
     {
-        $book = Book::findOrFail($id);
-        return view('books.show', ['book' => $book]);
+        return view('books.show', compact('book'));
     }
 
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        $book = Book::findOrFail($id);
-
         (new DeleteBookAction())->execute($book);
 
         return redirect('/')->with('msg', 'Livro Deletado com Sucesso!');
     }
 
-    public function edit($id)
+    public function edit(Book $book)
     {
         $users = User::all();
-        $book = Book::findOrFail($id);
 
-        return view('books.edit', ['book' => $book, 'users' => $users]);
+        return view('books.edit', compact(['book', 'users']));
     }
 
     public function update(BookRequest $request)

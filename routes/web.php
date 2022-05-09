@@ -24,21 +24,21 @@ Route::post('/books', [BookController::class, 'store'])->middleware('auth');
 
 Route::get('/books/list', [BookController::class, 'list'])->middleware('auth');
 
-Route::get('/books/show/{id}', [BookController::class, 'show'])->middleware('auth');
+Route::get('/books/show/{book}', [BookController::class, 'show'])->middleware('auth');
 
-Route::delete('/books/delete/{id}', [BookController::class, 'destroy'])->middleware('auth');
+Route::delete('/books/delete/{book}', [BookController::class, 'destroy'])->middleware('auth');
 
-Route::get('/books/edit/{id}', [BookController::class, 'edit'])->middleware('auth');
+Route::get('/books/edit/{book}', [BookController::class, 'edit'])->middleware('auth');
 
-Route::put('/books/update/{id}', [BookController::class, 'update'])->middleware('auth');
+Route::put('/books/update/{book}', [BookController::class, 'update'])->middleware('auth');
 
-Route::post('/books/borrow/{id}', [BorrowController::class, 'store'])->middleware('auth');
+Route::post('/books/borrow/{book}', [BorrowController::class, 'store'])->middleware('auth');
 
 Route::get('/books/borrows/list', [BorrowController::class, 'list'])->middleware('auth');
 
-Route::delete('/books/borrows/delete/{id}', [BorrowController::class, 'destroy'])->middleware('auth');
+Route::delete('/books/borrows/delete/{borrow}', [BorrowController::class, 'destroy'])->middleware('auth');
 
-Route::get('/books/borrows/update/{id}', [BorrowController::class, 'update'])->middleware('auth');
+Route::get('/books/borrows/update/{borrow}', [BorrowController::class, 'update'])->middleware('auth');
 
 Route::get('/books/borrows/report', [BorrowController::class, 'makeReport'])->middleware('auth');
 

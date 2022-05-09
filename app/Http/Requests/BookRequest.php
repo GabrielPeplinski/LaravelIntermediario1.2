@@ -24,8 +24,8 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|required|min:5|max:255|not_regex:[/\d+/]',
-            'author' => 'string|required|min:5|max:255|not_regex:[/\d+/]',
+            'author' => 'string|required|min:5|max:255|alpha',
+            'title' => 'string|required|min:5|max:255|alpha_num',
         ];
     }
 }
