@@ -25,7 +25,7 @@
                             <td class="col-md-1 col-sm-2.4 col-xs-2">
                                 {{ $borrow->id }}
                             </td>
-                            <td class="col-md-3 col-sm-1.2 col-xs-1.2 text-center">
+                            <td class="col-md-3 col-sm-1.2 col-xs-1.2">
                                 {{ $borrow->book->title }}
                             </td>
                             <td class="col-md-2 col-sm-1.2 col-xs-1.2 text-center">
