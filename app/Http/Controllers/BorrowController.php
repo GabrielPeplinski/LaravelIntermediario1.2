@@ -50,8 +50,6 @@ class BorrowController extends Controller
     {
         $borrows = Borrow::withTrashed()->get();
 
-        //dd($borrows);
-
         return view('borrows.report',['borrows' => $borrows]);
     }
 }
