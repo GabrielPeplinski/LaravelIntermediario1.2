@@ -12,7 +12,7 @@
                 <thead>
                 <tr>
                     <th class="col-md-1 col-sm-2.4 col-xs-2">ID:</th>
-                    <th class="col-md-2.4 col-sm-3 col-xs-2 text-center">Livro:</th>
+                    <th class="col-md-2.4 col-sm-3 col-xs-2">Livro:</th>
                     <th class="col-md-2 col-sm-1.2 col-xs-1.2 text-center">Usuário</th>
                     <th class="col-md-2.4 col-sm-2.4 col-xs-2 text-center">Data do Empréstimo</th>
                     <th class="col-md-2.4 col-sm-2.4 col-xs-2 text-center">Data da Devolução</th>
@@ -26,7 +26,7 @@
                                 {{ $borrow->id }}
                             </td>
                             <td class="col-md-3 col-sm-1.2 col-xs-1.2">
-                                {{ $borrow->book->title }}
+                                {{ optional($borrow->book)->title }}
                             </td>
                             <td class="col-md-2 col-sm-1.2 col-xs-1.2 text-center">
                                 {{ $borrow->user->name }}

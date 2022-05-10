@@ -29,7 +29,7 @@ class BookController extends Controller
     {
         $data = $request->validated('title', 'author');
         $user = auth()->user();
-
+        dd($data);
         (new CreateBookAction())->execute($data, $user);
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
@@ -61,11 +61,9 @@ class BookController extends Controller
         return view('books.edit', compact(['book', 'users']));
     }
 
-    public function update(BookRequest $request)
+    public function update(BookRequest $request, Book $book)
     {
         $data = $request->validated('title', 'author');
-
-        $book = Book::findOrFail($request->id);
         $donor = User::findOrFail($request->donorId[0]);
 
         (new UpdateBookAction())->execute($data, $donor, $book);

@@ -22,9 +22,9 @@ class BorrowController extends Controller
 
     public function list()
     {
-        $borrows = auth()->user()->borrowed;
+        $myBorrows = auth()->user()->borrowed;
 
-        return view('borrows.list',['myBorrows' => $borrows])->with('Livros Encontrados!');
+        return view('borrows.list', compact('myBorrows'))->with('Livros Encontrados!');
     }
 
     public function destroy(Borrow $borrow)
@@ -45,6 +45,6 @@ class BorrowController extends Controller
     {
         $borrows = Borrow::withTrashed()->get();
 
-        return view('borrows.report',['borrows' => $borrows]);
+        return view('borrows.report', compact('borrows'));
     }
 }
