@@ -29,7 +29,7 @@ class BookController extends Controller
     {
         $data = $request->validated('title', 'author');
         $user = auth()->user();
-        dd($data);
+
         (new CreateBookAction())->execute($data, $user);
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
