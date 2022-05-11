@@ -49,6 +49,8 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $this->authorize('destroy', $book);
+
         (new DeleteBookAction())->execute($book);
 
         return redirect('/')->with('msg', 'Livro Deletado com Sucesso!');
@@ -56,6 +58,8 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
+        $this->authorize('edit', $book);
+
         $users = User::all();
 
         return view('books.edit', compact(['book', 'users']));
