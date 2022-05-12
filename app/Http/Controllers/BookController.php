@@ -37,7 +37,7 @@ class BookController extends Controller
 
     public function list()
     {
-        $books = cache()->remember('booklist', 60*60*24, function (){
+        $books = cache()->remember('booklist', 60, function (){
             return Book::all();
         });
 
@@ -62,7 +62,7 @@ class BookController extends Controller
     {
         $this->authorize('edit', $book);
 
-        $users = cache()->remember('userlist', 60*60*24, function (){
+        $users = cache()->remember('userlist', 60, function (){
            return User::all();
         });
 
