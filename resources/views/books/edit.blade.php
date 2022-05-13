@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <h3>Editando o livro : {{ $book->title }}</h3>
-    <form action="/books/update/{{ $book->id }}" method="POST">
+    <form action="/books/{{ $book->id }}" method="POST">
         @csrf
         @method('PUT')
         <div class="col-lg-11 col-md-10 col-sm-10 col-xs-12 mb-2 mt-1">

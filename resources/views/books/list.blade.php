@@ -32,7 +32,7 @@
                         @endif
 
                         <td class="col-md-2.4 col-sm-1.5 col-xs-2">
-                            <form action="/books/show/{{ $book->id }}" method="GET">
+                            <form action="/books/{{ $book->id }}" method="GET">
                                 <button type="submit" class="btn btn-success text-dark">
                                     <h3 class="more">+</h3>
                                 </button>

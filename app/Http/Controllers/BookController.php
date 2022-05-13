@@ -12,7 +12,7 @@ use App\Models\User;
 
 class BookController extends Controller
 {
-    public function index()
+    public function welcome()
     {
         return view('welcome');
     }
@@ -35,7 +35,7 @@ class BookController extends Controller
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
     }
 
-    public function list()
+    public function index()
     {
         $books = cache()->remember('booklist', 60, function (){
             return Book::all();

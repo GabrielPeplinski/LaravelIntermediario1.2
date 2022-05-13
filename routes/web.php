@@ -15,32 +15,17 @@ use App\Http\Controllers\BorrowController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [BookController::class, 'welcome']);
 
-Route::get('/', [BookController::class, 'index']);
+Route::resource('/books', BookController::class)->middleware('auth');
 
-Route::get('/books/create', [BookController::class, 'create'])->middleware('auth');
+Route::resource('/borrows', BorrowController::class)->middleware('auth');
 
-Route::post('/books', [BookController::class, 'store'])->middleware('auth');
+Route::post('/borrows/{book}', [BorrowController::class, 'store'])->middleware('auth');
 
-Route::get('/books/list', [BookController::class, 'list'])->middleware('auth');
+Route::get('/borrows/{borrow}', [BorrowController::class, 'update'])->middleware('auth');
 
-Route::get('/books/show/{book}', [BookController::class, 'show'])->middleware('auth');
-
-Route::delete('/books/delete/{book}', [BookController::class, 'destroy'])->middleware('auth');
-
-Route::get('/books/edit/{book}', [BookController::class, 'edit'])->middleware('auth');
-
-Route::put('/books/update/{book}', [BookController::class, 'update'])->middleware('auth');
-
-Route::post('/books/borrow/{book}', [BorrowController::class, 'store'])->middleware('auth');
-
-Route::get('/books/borrows/list', [BorrowController::class, 'list'])->middleware('auth');
-
-Route::delete('/books/borrows/delete/{borrow}', [BorrowController::class, 'destroy'])->middleware('auth');
-
-Route::get('/books/borrows/update/{borrow}', [BorrowController::class, 'update'])->middleware('auth');
-
-Route::get('/books/borrows/report', [BorrowController::class, 'makeReport'])->middleware('auth');
+Route::get('/report', [BorrowController::class, 'makeReport'])->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',

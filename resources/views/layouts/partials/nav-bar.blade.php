@@ -10,16 +10,16 @@
                     <a class="nav-link" href="/">Início</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/books/create">Cadastrar Livro</a>
+                    <a class="nav-link" href="books/create">Cadastrar Livro</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/books/list">Ver Livros</a>
+                    <a class="nav-link" href="/books">Ver Livros</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/books/borrows/list">Meus Empréstimos</a>
+                    <a class="nav-link" href="/borrows">Meus Empréstimos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/books/borrows/report">Relatório</a>
+                    <a class="nav-link" href="/report">Relatório</a>
                 </li>
                 <li class="nav-item active">
                     <form action="/logout" method="POST">

@@ -39,7 +39,7 @@
             <tr class="mt-2">
                 <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     @if ($book -> available === 1)
-                        <form action="/books/borrow/{{ $book->id }}" method="POST">
+                        <form action="/borrows/{{$book->id}}" method="POST">
                             @csrf
                             @method('POST')
                             <button type="submit" class="btn-sm btn-success text-dark f-left">Emprestar</button>
@@ -48,7 +48,7 @@
                 </td>
                 @can('edit', $book)
                     <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <form action="/books/edit/{{ $book->id }}" method="POST">
+                        <form action="/books/{{ $book->id }}/edit" method="POST">
                             @csrf
                             @method('GET')
                             <button type="submit" class="btn-sm btn-secondary text-dark">Editar</button>
@@ -57,7 +57,7 @@
                 @endcan
                 @can('destroy', $book)
                     <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <form action="/books/delete/{{ $book->id }}" method="POST">
+                        <form action="/books/{{ $book->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn-sm btn-danger text-dark">Deletar</button>

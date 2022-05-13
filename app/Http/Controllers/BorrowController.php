@@ -11,6 +11,13 @@ use App\Models\Borrow;
 
 class BorrowController extends Controller
 {
+    public function index()
+    {
+        $myBorrows = auth()->user()->borrowed;
+
+        return view('borrows.list', compact('myBorrows'))->with('Livros Encontrados!');
+    }
+
     public function store(Book $book)
     {
         $userBorrow = auth()->user();
@@ -18,13 +25,6 @@ class BorrowController extends Controller
         (new CreateBorrowAction())->execute($userBorrow, $book);
 
         return redirect('/')->with('msg', 'Livro Emprestado com Sucesso!');
-    }
-
-    public function list()
-    {
-        $myBorrows = auth()->user()->borrowed;
-
-        return view('borrows.list', compact('myBorrows'))->with('Livros Encontrados!');
     }
 
     public function destroy(Borrow $borrow)
