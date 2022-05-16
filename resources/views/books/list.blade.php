@@ -25,10 +25,10 @@
                         <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-1.2">{{ $book->author }}</td>
                         <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-2.4 col-xs-0.8">{{ $book->user->name }}</td>
 
-                        @if ($book->available === 0)
-                            <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">Emprestado!</td>
+                        @if ($book->available)
+                            <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">Disponível!</td>
                         @else
-                            <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">Disponível</td>
+                            <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">Emprestado!</td>
                         @endif
 
                         <td class="col-md-2.4 col-sm-1.5 col-xs-2">

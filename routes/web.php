@@ -15,6 +15,7 @@ use App\Http\Controllers\BorrowController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', [BookController::class, 'welcome']);
 
 Route::resource('/books', BookController::class)->middleware('auth');
@@ -22,8 +23,6 @@ Route::resource('/books', BookController::class)->middleware('auth');
 Route::resource('/borrows', BorrowController::class)->middleware('auth');
 
 Route::post('/borrows/{book}', [BorrowController::class, 'store'])->middleware('auth');
-
-Route::get('/borrows/{borrow}', [BorrowController::class, 'update'])->middleware('auth');
 
 Route::get('/report', [BorrowController::class, 'makeReport'])->middleware('auth');
 

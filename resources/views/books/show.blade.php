@@ -26,10 +26,10 @@
             </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Situação</th>
-                @if ($book -> available === 0)
-                    <td class="col-md-2 col-sm-2 col-xs-2">Emprestado!</td>
+                @if ($book->available)
+                    <td class="col-md-2 col-sm-2 col-xs-2">Disponível!</td>
                 @else
-                    <td class="col-md-2 col-sm-2 col-xs-2">Disponível</td>
+                    <td class="col-md-2 col-sm-2 col-xs-2">Emprestado</td>
                 @endif
             </tr>
             </tbody>
@@ -38,7 +38,7 @@
             <tbody>
             <tr class="mt-2">
                 <td class="col-xg-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    @if ($book -> available === 1)
+                    @if ($book->available)
                         <form action="/borrows/{{$book->id}}" method="POST">
                             @csrf
                             @method('POST')

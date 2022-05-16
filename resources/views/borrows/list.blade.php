@@ -36,10 +36,9 @@
                     </tr>
                     </tbody>
                     <td class="col-xl-2 col-lg-2 col-md-2.4 col-sm-1.2 col-xs-0.8">
-                        <form class="w-10" action="/borrows/{{ $borrow->id}}"
-                              method="POST">
+                        <form class="w-10" action="/borrows/{{ $borrow->id}}" method="POST">
                             @csrf
-                            @method('GET')
+                            @method('PUT')
                             <button type="submit" class="btn-sm btn-success text-dark">Prolongar</button>
                         </form>
                     </td>
