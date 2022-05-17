@@ -3,9 +3,16 @@
 @section('content')
 <div class="container-fluid">
     <h3>Editando o livro : {{ $book->title }}</h3>
-    <form action="/books/{{ $book->id }}" method="POST">
+    <h4>Capa Atual:</h4>
+    <form action="/books/{{ $book->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <div class="form-group">
+            <img src="{{$book->getCoverImageUrl()}}" width="150px"><br/>
+            <label for="exampleFormControlFile1">Insira uma Nova Capa:</label>
+            <br>
+            <input type="file" class="form-control-image mb-2" id="exampleFormControlFile1" name="image">
+        </div>
         <div class="col-lg-11 col-md-10 col-sm-10 col-xs-12 mb-2 mt-1">
             <label for="labelForTitle" class="form-label">Título do Livro:</label>
             <input type="text" class="form-control form-control-sm" name="title" value="{{ $book->title }}"

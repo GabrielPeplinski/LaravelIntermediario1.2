@@ -5,6 +5,7 @@ namespace Tests\Unit\Actions\Book;
 use App\Actions\Book\CreateBookAction;
 use App\Models\Book;
 use App\Models\User;
+use Faker\Core\File;
 use Mockery\MockInterface;
 use Tests\TestCase;
 

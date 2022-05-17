@@ -25,7 +25,8 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'string|required|min:5|max:255|regex:/[^a-z_\-0-9]/i',
-            'author' => 'string|required|min:4|max:255|not_regex:[/\d+/]'
+            'author' => 'string|required|min:4|max:255|not_regex:[/\d+/]',
+            'image' => 'required|file'
         ];
     }
 }

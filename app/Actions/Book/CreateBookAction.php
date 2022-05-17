@@ -7,7 +7,7 @@ use App\Models\Book;
 
 class CreateBookAction
 {
-    public function execute(array $data, User $donor):Book
+    public function execute(array $data, User $donor): Book
     {
         $book = app(Book::class);
 
@@ -15,6 +15,10 @@ class CreateBookAction
         $book->available = true;
 
         $book->user_id = $donor->id;
+
+        if (data_get($data, 'image')) {
+            (new AddBookMediaAction())->execute($data, $book);
+        }
 
         $book->save();
 

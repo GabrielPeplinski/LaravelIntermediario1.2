@@ -2,20 +2,17 @@
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col mx-auto text-center">
+                <img src="{{$book->getCoverImageUrl()}}" width="150px"><br/>
+            </div>
+            <div class="col">
+                <h1 class=>{{ $book->title }}</h1>
+                <h2 class="text-muted">{{ $book->author }}</h2>
+            </div>
+        </div>
         <table class="table table-bordered table-striped col-lg-7 col-md-6 col-sm-8 col-xs-8 text-center">
             <tbody>
-            <tr>
-                <th class="col-md-2 col-sm-2 col-xs-2">ID do Livro</th>
-                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->id }}</td>
-            </tr>
-            <tr>
-                <th class="col-md-2 col-sm-2 col-xs-2">Título</th>
-                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->title }}</td>
-            </tr>
-            <tr>
-                <th class="col-md-2 col-sm-2 col-xs-2">Autor</th>
-                <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->author }}</td>
-            </tr>
             <tr>
                 <th class="col-md-2 col-sm-2 col-xs-2">Doador</th>
                 <td class="col-md-2 col-sm-2 col-xs-2">{{ $book->user->name }}</td>
