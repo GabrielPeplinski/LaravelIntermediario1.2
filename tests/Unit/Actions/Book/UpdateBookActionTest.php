@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Actions\Book;
 
+use App\Actions\Book\IsValidAction;
 use App\Actions\Book\UpdateBookAction;
 use App\Models\Book;
 use App\Models\User;
@@ -18,7 +19,6 @@ class UpdateBookActionTest extends TestCase
 
     public function test_should_update_book_when_valid_data()
     {
-
         $book = $this->partialMock(Book::class, function(MockInterface $mock){
             $mock->shouldReceive('save')
                 ->once();
@@ -42,11 +42,49 @@ class UpdateBookActionTest extends TestCase
             'available' => true,
         ];
 
-        $bookUpdated = $this->action->execute($dataUpdate, $user, $book);
+        $ans = (new IsValidAction())->execute($data);
+
+        if($ans)
+            $bookUpdated = $this->action->execute($dataUpdate, $user, $book);
 
         $this->assertInstanceOf(Book::class, $bookUpdated);
         $this->assertEquals($dataUpdate['title'], $bookUpdated->title);
         $this->assertEquals('J.K. Howling', $bookUpdated->author);
         $this->assertEquals(1, $bookUpdated->user_id);
+    }
+
+    public function test_should_not_update_book_when_data_is_invalid()
+    {
+        $book = $this->partialMock(Book::class, function(MockInterface $mock){
+            $mock->shouldReceive('save')
+                ->once();
+        });
+
+        $data = [
+            'title'=>'20 Mil léguas Submarinas',
+            'author'=>'Júlio Verne',
+            'available' => true,
+            'user_id' => 2
+        ];
+
+        $user = new User();
+        $user->id = 1;
+
+        $book->fill($data);
+
+        $dataUpdate = [
+            'title' => 'Harry Potter',
+            'author' => 11111,
+            'available' => true,
+        ];
+
+        $ans = (new IsValidAction())->execute($data);
+
+        if($ans)
+            $bookUpdated = $this->action->execute($dataUpdate, $user, $book);
+
+        // Como a informação está inválida, não irá atualizar os dados
+        // e será retornado false da action de verificação()
+        $this->assertFalse((new IsValidAction())->execute($dataUpdate));
     }
 }

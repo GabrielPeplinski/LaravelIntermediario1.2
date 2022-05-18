@@ -5,6 +5,7 @@ namespace Tests\Unit\Actions\Book;
 use App\Actions\Book\DeleteBookAction;
 use App\Models\Book;
 use App\Models\User;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 class DeleteBookActionTest extends TestCase

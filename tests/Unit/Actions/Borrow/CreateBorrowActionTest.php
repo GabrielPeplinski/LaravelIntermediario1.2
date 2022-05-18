@@ -17,7 +17,7 @@ class CreateBorrowActionTest extends TestCase
         $this->action = new CreateBorrowAction();
     }
 
-    public function test_should_create_borrow_when_valid_data()
+    public function test_should_create_borrow()
     {
         $this->partialMock(Borrow::class, function(MockInterface $mock){
             $mock->shouldReceive('save')

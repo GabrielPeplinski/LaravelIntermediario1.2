@@ -17,7 +17,7 @@ class UpdateBorrowActionTest extends TestCase
         $this->action = new UpdateBorrowAction();
     }
 
-    public function test_should_update_borrow_when_called()
+    public function test_should_update_borrow()
     {
         $borrow = $this->partialMock(Borrow::class, function(MockInterface $mock){
             $mock->shouldReceive('save')

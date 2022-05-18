@@ -43,7 +43,7 @@ class BorrowController extends Controller
 
     public function makeReport()
     {
-        $borrows = cache()->remember('borrowlist', 60, function () {
+        $borrows = cache()->remember('borrowlist', 30, function () {
             return Borrow::withTrashed()->get();
         });
 

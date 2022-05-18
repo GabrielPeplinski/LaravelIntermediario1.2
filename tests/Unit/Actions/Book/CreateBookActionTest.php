@@ -3,9 +3,9 @@
 namespace Tests\Unit\Actions\Book;
 
 use App\Actions\Book\CreateBookAction;
+use App\Actions\Book\IsValidAction;
 use App\Models\Book;
 use App\Models\User;
-use Faker\Core\File;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -32,7 +32,11 @@ class CreateBookActionTest extends TestCase
         $user = new User();
         $user->id = 1;
 
-        $book = $this->action->execute($data, $user);
+        $ans = (new IsValidAction())->execute($data);
+
+        if($ans){
+            $book = $this->action->execute($data, $user);
+        }
 
         $this->assertInstanceOf(Book::class, $book);
         $this->assertTrue($book->available);
@@ -40,5 +44,32 @@ class CreateBookActionTest extends TestCase
         $this->assertEquals('Viagem Ao Centro da Terra', $book->title);
         $this->assertEquals('Julio Verne', $book->author);
         $this->assertEquals(1, $book->user_id);
+    }
+
+    public function test_should_not_create_book_when_data_is_invalid()
+    {
+
+        $this->partialMock(Book::class, function(MockInterface $mock){
+            $mock->shouldReceive('save')
+                ->never();
+        });
+
+        $data = [
+            'title'=>'Viagem Ao Centro da Terra',
+            'author'=> 1111,
+        ];
+
+        $user = new User();
+        $user->id = 1;
+
+        $ans = (new IsValidAction())->execute($data);
+
+        if($ans){
+            $book = $this->action->execute($data, $user);
+        }
+
+        // Como a informação está inválida, não será chamado o método 'save',
+        // e será retornado false da action de verificação()
+        $this->assertFalse((new IsValidAction())->execute($data));
     }
 }

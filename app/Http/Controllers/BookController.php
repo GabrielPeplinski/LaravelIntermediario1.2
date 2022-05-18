@@ -30,7 +30,6 @@ class BookController extends Controller
         $data = $request->validated();
         $user = auth()->user();
 
-
         (new CreateBookAction())->execute($data, $user);
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
@@ -38,7 +37,7 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = cache()->remember('booklist', 60, function (){
+        $books = cache()->remember('booklist', 30, function (){
             return Book::all();
         });
 
@@ -63,7 +62,7 @@ class BookController extends Controller
     {
         $this->authorize('edit', $book);
 
-        $users = cache()->remember('userlist', 60, function (){
+        $users = cache()->remember('userlist', 30, function (){
            return User::all();
         });
 
@@ -75,9 +74,6 @@ class BookController extends Controller
         $data = $request->validated();
         $donor = User::findOrFail($request->donorId[0]);
 
-//        $data['image'] = $request->file('image');
-//        Storage::disk('public')->put($data['image'], $data['image']);
-        //$book->addMedia(public_path('uploads' . '/' . $data['image']))->toMediaCollection('images');
         (new UpdateBookAction())->execute($data, $donor, $book);
 
         return redirect('/')->with('msg', 'Livro Atualizado com Sucesso!');
