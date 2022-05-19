@@ -68,8 +68,6 @@ class CreateBookActionTest extends TestCase
             $book = $this->action->execute($data, $user);
         }
 
-        // Como a informação está inválida, não será chamado o método 'save',
-        // e será retornado false da action de verificação()
         $this->assertFalse((new IsValidAction())->execute($data));
     }
 }

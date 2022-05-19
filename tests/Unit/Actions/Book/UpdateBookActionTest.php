@@ -83,8 +83,6 @@ class UpdateBookActionTest extends TestCase
         if($ans)
             $bookUpdated = $this->action->execute($dataUpdate, $user, $book);
 
-        // Como a informação está inválida, não irá atualizar os dados
-        // e será retornado false da action de verificação()
         $this->assertFalse((new IsValidAction())->execute($dataUpdate));
     }
 }
