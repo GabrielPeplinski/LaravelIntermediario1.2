@@ -7,24 +7,24 @@
         <ul class="navbar-nav">
             @auth
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Início</a>
+                    <a class="nav-link" href={{ route('welcome') }}>Início</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="books/create">Cadastrar Livro</a>
+                    <a class="nav-link" href={{ route('books.create') }}>Cadastrar Livro</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/books">Ver Livros</a>
+                    <a class="nav-link" href={{ route('books.index') }}>Ver Livros</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/borrows">Meus Empréstimos</a>
+                    <a class="nav-link" href={{ route('borrows.index') }}>Meus Empréstimos</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/report">Relatório</a>
                 </li>
                 <li class="nav-item active">
-                    <form action="/logout" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <a href="/logout" class="nav-link" onclick="event.preventDefault();
+                        <a href={{ route('logout') }} class="nav-link" onclick="event.preventDefault();
                     this.closest('form').submit();">
                             Sair
                         </a>
@@ -33,10 +33,10 @@
             @endauth
             @guest
                 <li class="nav-item active">
-                    <a class="nav-link" href="/login">Entrar</a>
+                    <a class="nav-link" href={{ route('login') }}>Entrar</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/register">Registrar Usuário</a>
+                    <a class="nav-link" href={{ route('register') }}>Registrar Usuário</a>
                 </li>
             @endguest
         </ul>
