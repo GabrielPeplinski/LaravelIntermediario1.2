@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Book\CreateBookAction;
 use App\Actions\Book\DeleteBookAction;
 use App\Actions\Book\UpdateBookAction;
+use App\Dto\BookData;
 use App\Http\Requests\BookRequest;
 
 use App\Models\Book;
@@ -30,7 +31,9 @@ class BookController extends Controller
         $data = $request->validated();
         $user = auth()->user();
 
-        (new CreateBookAction())->execute($data, $user);
+        $bookData = new BookData($data);
+
+        (new CreateBookAction())->execute($bookData, $user);
 
         return redirect('/')->with('msg', 'Livro Cadastrado com Sucesso!');
     }
@@ -74,7 +77,9 @@ class BookController extends Controller
         $data = $request->validated();
         $donor = User::findOrFail($request->donorId[0]);
 
-        (new UpdateBookAction())->execute($data, $donor, $book);
+        $bookData = new BookData($data);
+
+        (new UpdateBookAction())->execute($bookData, $donor, $book);
 
         return redirect('/')->with('msg', 'Livro Atualizado com Sucesso!');
     }

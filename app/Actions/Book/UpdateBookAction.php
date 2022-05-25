@@ -2,18 +2,20 @@
 
 namespace App\Actions\Book;
 
+use App\Dto\BookData;
 use App\Models\User;
 use App\Models\Book;
 
 class UpdateBookAction
 {
-    public function execute(array $data, User $donor, Book $book): Book
+    public function execute(BookData $bookData, User $donor, Book $book): Book
     {
-        $data['user_id'] = $donor->id;
-        $book->fill($data);
+        $book->title = $bookData->title;
+        $book->author = $bookData->author;
+        $book->user_id = $donor->id;
 
-        if (data_get($data, 'image')) {
-            (new AddBookMediaAction())->execute($data, $book);
+        if (data_get($bookData, 'image')) {
+            (new AddBookMediaAction())->execute($bookData, $book);
         }
 
         $book->save();
