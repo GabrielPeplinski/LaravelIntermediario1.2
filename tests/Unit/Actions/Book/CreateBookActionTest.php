@@ -4,12 +4,9 @@ namespace Tests\Unit\Actions\Book;
 
 use App\Actions\Book\CreateBookAction;
 use App\Dto\BookData;
-use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 use Mockery\MockInterface;
-use Psy\Exception\TypeErrorException;
 use Tests\TestCase;
 
 class CreateBookActionTest extends TestCase
@@ -49,10 +46,11 @@ class CreateBookActionTest extends TestCase
 
     public function test_should_not_create_book_when_data_is_invalid()
     {
+        $this->expectException(\TypeError::class);
 
         $this->partialMock(Book::class, function (MockInterface $mock) {
             $mock->shouldReceive('save')
-                ->once();
+                ->never();
         });
 
         $data = [
@@ -60,7 +58,6 @@ class CreateBookActionTest extends TestCase
             'author' => (object)[],
         ];
 
-        $user = new User();
-        $user->id = 1;
+        $bookData = new BookData($data);
     }
 }

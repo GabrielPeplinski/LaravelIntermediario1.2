@@ -51,4 +51,35 @@ class UpdateBookActionTest extends TestCase
         $this->assertEquals('J.K. Howling', $bookUpdated->author);
         $this->assertEquals(1, $bookUpdated->user_id);
     }
+
+    public function test_should_not_update_book_when_valid_data()
+    {
+        $this->expectException(\TypeError::class);
+
+        $book = $this->partialMock(Book::class, function(MockInterface $mock){
+            $mock->shouldReceive('save')
+                ->never();
+        });
+
+        $data = [
+            'title'=>'20 Mil léguas Submarinas',
+            'author'=>'Júlio Verne',
+            'available' => true,
+            'user_id' => 2
+        ];
+
+        $book->fill($data);
+
+        $user = new User();
+        $user->id = 1;
+
+        $dataUpdate = [
+            'title' => (object) 22222,
+            'author' => (object) 55555,
+        ];
+
+        $bookData = new BookData($dataUpdate);
+
+        $bookUpdated = $this->action->execute($bookData, $user, $book);
+    }
 }
