@@ -3,15 +3,17 @@
 namespace Tests\Unit\Actions\Book;
 
 use App\Actions\Book\CreateBookAction;
-use App\Actions\Book\IsValidAction;
+use App\Dto\BookData;
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
 class CreateBookActionTest extends TestCase
 {
-    protected function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->action = new CreateBookAction();
@@ -19,24 +21,22 @@ class CreateBookActionTest extends TestCase
 
     public function test_should_create_book_when_valid_data()
     {
-        $this->partialMock(Book::class, function(MockInterface $mock){
+        $this->partialMock(Book::class, function (MockInterface $mock) {
             $mock->shouldReceive('save')
                 ->once();
         });
 
         $data = [
-            'title'=>'Viagem Ao Centro da Terra',
-            'author'=>'Julio Verne',
+            'title' => 'Viagem Ao Centro da Terra',
+            'author' => 'Julio Verne',
         ];
+
+        $bookData = new BookData($data);
 
         $user = new User();
         $user->id = 1;
 
-        $ans = (new IsValidAction())->execute($data);
-
-        if($ans){
-            $book = $this->action->execute($data, $user);
-        }
+        $book = $this->action->execute($bookData, $user);
 
         $this->assertInstanceOf(Book::class, $book);
         $this->assertTrue($book->available);
@@ -49,25 +49,29 @@ class CreateBookActionTest extends TestCase
     public function test_should_not_create_book_when_data_is_invalid()
     {
 
-        $this->partialMock(Book::class, function(MockInterface $mock){
+        $this->partialMock(Book::class, function (MockInterface $mock) {
             $mock->shouldReceive('save')
-                ->never();
+                ->once();
         });
 
         $data = [
-            'title'=>'Viagem Ao Centro da Terra',
-            'author'=> 1111,
+            'title' => (int)2222,
+            'author' => (int)1111,
         ];
+        
+        $bookData = new BookData($data);
 
         $user = new User();
         $user->id = 1;
 
-        $ans = (new IsValidAction())->execute($data);
-
-        if($ans){
-            $book = $this->action->execute($data, $user);
+        try {
+            $book = $this->action->execute($bookData, $user);
+        } catch (\Exception $e) {
+            dd('erro: ' . $e);
         }
 
-        $this->assertFalse((new IsValidAction())->execute($data));
+        $this->assertFalse('Viagem Ao Centro da Terra', $book->title);
+        dd($book->title);
+        //}
     }
 }
