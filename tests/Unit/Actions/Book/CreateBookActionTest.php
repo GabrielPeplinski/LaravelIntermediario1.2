@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Mockery\MockInterface;
+use Psy\Exception\TypeErrorException;
 use Tests\TestCase;
 
 class CreateBookActionTest extends TestCase
@@ -55,19 +56,11 @@ class CreateBookActionTest extends TestCase
         });
 
         $data = [
-            'title' => (object)2222,
-            'author' => (object)1111,
+            'title' => (object)[],
+            'author' => (object)[],
         ];
-
-        $bookData = new BookData($data);
 
         $user = new User();
         $user->id = 1;
-
-        try {
-            $book = $this->action->execute($bookData, $user);
-        } catch (\Error $e) {
-            dd('erro: ' . $e);
-        }
     }
 }

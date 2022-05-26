@@ -7,12 +7,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class BookData extends DataTransferObject
 {
-    /** @var string  */
+    /** @var string */
     public string $title;
 
-    /** @var string  */
+    /** @var string */
     public string $author;
 
-   /** @var string|Media */
+    /** @var string|Media */
     public $image;
 }
