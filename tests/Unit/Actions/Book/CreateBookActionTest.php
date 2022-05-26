@@ -55,10 +55,10 @@ class CreateBookActionTest extends TestCase
         });
 
         $data = [
-            'title' => (int)2222,
-            'author' => (int)1111,
+            'title' => (object)2222,
+            'author' => (object)1111,
         ];
-        
+
         $bookData = new BookData($data);
 
         $user = new User();
@@ -66,12 +66,8 @@ class CreateBookActionTest extends TestCase
 
         try {
             $book = $this->action->execute($bookData, $user);
-        } catch (\Exception $e) {
+        } catch (\Error $e) {
             dd('erro: ' . $e);
         }
-
-        $this->assertFalse('Viagem Ao Centro da Terra', $book->title);
-        dd($book->title);
-        //}
     }
 }
