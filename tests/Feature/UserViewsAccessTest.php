@@ -15,14 +15,14 @@ class UserViewsAccessTest extends TestCase
 
     public function test_only_logged_users_can_see_list_books_view()
     {
-        $response = $this->get('/books/list');
+        $response = $this->get('/books');
 
         $response->assertRedirect('/login');
     }
 
     public function test_only_logged_users_can_see_borrows_view()
     {
-        $response = $this->get('/books/borrows/list');
+        $response = $this->get('/borrows');
 
         $response->assertRedirect('/login');
     }
