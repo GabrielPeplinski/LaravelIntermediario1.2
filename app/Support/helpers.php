@@ -1,7 +1,7 @@
 <?php
 
 if(!function_exists('doesMatchRegex')){
-    function execute($regex, $value):bool
+    function doesMatchRegex($regex, $value):bool
     {
         if(!preg_match($regex, $value)){
             return false;
@@ -11,8 +11,8 @@ if(!function_exists('doesMatchRegex')){
     }
 };
 
-if(!function_exists('doesMatchRegex')){
-    function execute($value):bool
+if(!function_exists('isString')){
+    function isString($value):bool
     {
         if(!is_string($value)) {
             return false;
