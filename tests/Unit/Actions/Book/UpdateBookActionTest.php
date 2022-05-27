@@ -2,8 +2,6 @@
 
 namespace Tests\Unit\Actions\Book;
 
-use App\Actions\Book\CreateBookAction;
-use App\Actions\Book\IsValidAction;
 use App\Actions\Book\UpdateBookAction;
 use App\Dto\BookData;
 use App\Models\Book;
@@ -17,7 +15,6 @@ class UpdateBookActionTest extends TestCase
     {
         parent::setUp();
         $this->action = new UpdateBookAction();
-        $this->createAction = new CreateBookAction();
     }
 
     public function test_should_update_book_when_valid_data()
