@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Actions\Book;
 
-use App\Actions\Book\IsValidAction;
 use App\Actions\Book\UpdateBookAction;
 use App\Dto\BookData;
 use App\Models\Book;
@@ -50,5 +49,31 @@ class UpdateBookActionTest extends TestCase
         $this->assertEquals($dataUpdate['title'], $bookUpdated->title);
         $this->assertEquals('J.K. Howling', $bookUpdated->author);
         $this->assertEquals(1, $bookUpdated->user_id);
+    }
+
+    public function test_should_not_update_book_when_data_is_invalid()
+    {
+        $this->expectException(\TypeError::class);
+
+        $data = [
+            'title'=>'20 Mil léguas Submarinas',
+            'author'=>'Júlio Verne'
+        ];
+
+        $bookData = new BookData($data);
+
+        $book = new Book($bookData);
+        $book->fill($data);
+
+        $user = (object) 12345;
+
+        $dataUpdate = [
+            'title' => 'Harry Potter',
+            'author' => 'J.K. Howling',
+        ];
+
+        $bookDataUpdate = new BookData($dataUpdate);
+
+        $bookUpdated = $this->action->execute($bookDataUpdate, $user, $book);
     }
 }
