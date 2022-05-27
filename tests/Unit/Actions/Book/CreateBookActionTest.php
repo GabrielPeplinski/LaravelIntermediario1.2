@@ -48,16 +48,18 @@ class CreateBookActionTest extends TestCase
     {
         $this->expectException(\TypeError::class);
 
-        $this->partialMock(Book::class, function (MockInterface $mock) {
-            $mock->shouldReceive('save')
-                ->never();
-        });
-
         $data = [
-            'title' => (object)[],
-            'author' => (object)[],
+            'title' => 'Viagem Ao Centro da Terra',
+            'author' => 'Julio Verne',
         ];
 
         $bookData = new BookData($data);
+
+        $user = [
+            'João',
+            '1234'
+        ];
+
+        $book = $this->action->execute($bookData, $user);
     }
 }

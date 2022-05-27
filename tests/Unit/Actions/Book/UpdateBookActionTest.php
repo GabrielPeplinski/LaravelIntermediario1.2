@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Actions\Book;
 
+use App\Actions\Book\CreateBookAction;
 use App\Actions\Book\IsValidAction;
 use App\Actions\Book\UpdateBookAction;
 use App\Dto\BookData;
@@ -16,6 +17,7 @@ class UpdateBookActionTest extends TestCase
     {
         parent::setUp();
         $this->action = new UpdateBookAction();
+        $this->createAction = new CreateBookAction();
     }
 
     public function test_should_update_book_when_valid_data()
@@ -52,34 +54,29 @@ class UpdateBookActionTest extends TestCase
         $this->assertEquals(1, $bookUpdated->user_id);
     }
 
-    public function test_should_not_update_book_when_valid_data()
+    public function test_should_not_update_book_when_data_is_invalid()
     {
         $this->expectException(\TypeError::class);
 
-        $book = $this->partialMock(Book::class, function(MockInterface $mock){
-            $mock->shouldReceive('save')
-                ->never();
-        });
-
         $data = [
             'title'=>'20 Mil léguas Submarinas',
-            'author'=>'Júlio Verne',
-            'available' => true,
-            'user_id' => 2
+            'author'=>'Júlio Verne'
         ];
 
+        $bookData = new BookData($data);
+
+        $book = new Book($bookData);
         $book->fill($data);
 
-        $user = new User();
-        $user->id = 1;
+        $user = (object) 12345;
 
         $dataUpdate = [
-            'title' => (object) 22222,
-            'author' => (object) 55555,
+            'title' => 'Harry Potter',
+            'author' => 'J.K. Howling',
         ];
 
-        $bookData = new BookData($dataUpdate);
+        $bookDataUpdate = new BookData($dataUpdate);
 
-        $bookUpdated = $this->action->execute($bookData, $user, $book);
+        $bookUpdated = $this->action->execute($bookDataUpdate, $user, $book);
     }
 }
