@@ -2,6 +2,7 @@
 
 namespace App\Actions\Borrow;
 
+use App\Jobs\SendBorrowEmail;
 use App\Models\User;
 use App\Models\Borrow;
 use App\Models\Book;
@@ -21,6 +22,8 @@ class CreateBorrowAction
         $book->update([
             'available' => false
         ]);
+
+        dispatch(new SendBorrowEmail($book, $borrow, $userBorrow));
 
         return $borrow;
     }

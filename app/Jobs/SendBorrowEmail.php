@@ -36,10 +36,7 @@ class SendBorrowEmail implements ShouldQueue
 
     public function handle()
     {
-        for ($i = 0; $i < 5; $i++) {
-            sleep(2);
-            Mail::to('teste@gmail.com')
-                ->send((new BorrowBookEmail($this->book, $this->borrow, $this->user)));
-        }
+        Mail::to('teste@gmail.com')
+            ->send((new BorrowBookEmail($this->book, $this->borrow, $this->user)));
     }
 }
