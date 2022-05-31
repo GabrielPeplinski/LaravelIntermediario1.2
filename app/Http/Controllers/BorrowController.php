@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Actions\Borrow\CreateBorrowAction;
 use App\Actions\Borrow\DeleteBorrowAction;
 use App\Actions\Borrow\UpdateBorrowAction;
-
 use App\Models\Book;
 use App\Models\Borrow;
 
@@ -22,7 +21,7 @@ class BorrowController extends Controller
     {
         $userBorrow = auth()->user();
 
-        (new CreateBorrowAction())->execute($userBorrow, $book);
+        $borrow = (new CreateBorrowAction())->execute($userBorrow, $book);
 
         return redirect('/')->with('msg', 'Livro Emprestado com Sucesso!');
     }
