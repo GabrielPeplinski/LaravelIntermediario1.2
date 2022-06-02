@@ -26,8 +26,6 @@ Route::post('/borrows/{book}', [BorrowController::class, 'store'])->middleware('
 
 Route::get('/report', [BorrowController::class, 'makeReport'])->middleware('auth');
 
-Route::get('/test', [BorrowController::class, 'test']);
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

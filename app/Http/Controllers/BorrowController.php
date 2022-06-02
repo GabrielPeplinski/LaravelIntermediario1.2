@@ -49,9 +49,4 @@ class BorrowController extends Controller
 
         return view('borrows.report', compact('borrows'));
     }
-
-    public function test()
-    {
-        dump((new GetUsersEmailsWithActiveBorrowsAction())->execute());
-    }
 }
