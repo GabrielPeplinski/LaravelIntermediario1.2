@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Borrow\CreateBorrowAction;
 use App\Actions\Borrow\DeleteBorrowAction;
 use App\Actions\Borrow\UpdateBorrowAction;
+use App\Actions\User\GetUsersEmailsWithActiveBorrowsAction;
 use App\Models\Book;
 use App\Models\Borrow;
 
