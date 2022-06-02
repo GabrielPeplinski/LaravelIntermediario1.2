@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Borrow\CreateBorrowAction;
 use App\Actions\Borrow\DeleteBorrowAction;
+use App\Actions\Borrow\ListEmailsWithActiveBorrowsAction;
 use App\Actions\Borrow\UpdateBorrowAction;
 use App\Models\Book;
 use App\Models\Borrow;
@@ -47,5 +48,10 @@ class BorrowController extends Controller
         });
 
         return view('borrows.report', compact('borrows'));
+    }
+
+    public function test()
+    {
+        var_dump((new ListEmailsWithActiveBorrowsAction())->execute());
     }
 }
