@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\Borrow\CreateBorrowAction;
 use App\Actions\Borrow\DeleteBorrowAction;
-use App\Actions\Borrow\ListEmailsWithActiveBorrowsAction;
 use App\Actions\Borrow\UpdateBorrowAction;
+use App\Actions\User\GetUsersEmailsWithActiveBorrowsAction;
 use App\Models\Book;
 use App\Models\Borrow;
 
@@ -52,6 +52,6 @@ class BorrowController extends Controller
 
     public function test()
     {
-        var_dump((new ListEmailsWithActiveBorrowsAction())->execute());
+        dump((new GetUsersEmailsWithActiveBorrowsAction())->execute());
     }
 }

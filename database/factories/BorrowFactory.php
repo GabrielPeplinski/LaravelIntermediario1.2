@@ -6,7 +6,6 @@ use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Nette\Utils\Random;
 
 class BorrowFactory extends Factory
 {

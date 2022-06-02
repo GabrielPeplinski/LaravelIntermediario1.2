@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Actions\Borrow\ListEmailsWithActiveBorrowsAction;
+use App\Actions\User\GetUsersEmailsWithActiveBorrowsAction;
 use App\Mail\DailyReminderEmail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -40,7 +40,7 @@ class SendDailyReminderEmail extends Command
      */
     public function handle()
     {
-        $emailList = (new ListEmailsWithActiveBorrowsAction())->execute();
+        $emailList = (new GetUsersEmailsWithActiveBorrowsAction())->execute();
         foreach ($emailList as $email){
             Mail::to($email)->send(new DailyReminderEmail());
         }
